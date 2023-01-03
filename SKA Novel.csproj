@@ -123,10 +123,10 @@
     <Resource Include="bin\Debug\Resources\Images\floppy-disk.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\floor4.jpg" />
+    <Resource Include="Resources\outside.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\outside.jpg" />
+    <Resource Include="Resources\floor4.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

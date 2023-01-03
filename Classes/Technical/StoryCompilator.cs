@@ -18,14 +18,45 @@ namespace SKA_Novel.Classes.Technical
 
         public delegate void Command(string codeString);
 
-        //{"ChangeBackground", "Изменение заднего фона, принимает имя фона"},
-        //{"ChangeMusic", "Изменение музыки, принимает имя музыки (.wav)"},
-        //{ "GoNextFile", "Переход к новому файлу, принимает имя файла"}
+        //СПРАВКА ПО КОМАНДАМ (*имякоманды )
+
+
+        //Файлы
+
+        //{"ChangeBackground", "Изменение заднего фона, принимает: имя фона + расширение"},
+        //{"ChangeMusic", "Изменение музыки, принимает: имя музыки + расширение"},
+        //{"GoNextFile", "Переход к новому файлу, принимает: имя файла"}
+
+        //Текст
+
+        //{"(MND", Мысли ГГ без имени}
+        //{"(I", Слова ГГ с иненем и цветом} 
+        //{"(ПЕР", Слова героя "Персонаж", сокращается до 3-ёх букв}
+
+        //{"GoThisLine", "Переход на строку текущ. файла: номер строки "}
+        //{"CheckKarma", "Проверка кармы, если ниже то перейти на строку: число кармы, номер строки"
+
+        //Персонажи
+
+        //{"AddHero", "Добавляет героя: имя героя, цвет (HEX), позиция"}
+        //{"ClearHero", "Стерает героя с позиции: позиция"}
+        //{"SetHeroEmotion", "Меняет эмоцию: имя героя, позиция, название эмоции"}
+        //{"MirrorHero", "Отражает героя: имя героя, позиция"}
+        //{"SetHeroAnimation", Задаёт анимацию: имя героя, позиция, скорость в милисекундах {Спрайт 1, Спрайт 2, ... }  }
+
+        //Выбор
+
+        //{"CreateOptionBlock", "Выбор, отправляет в выбранный файл + число кармы, при соответсвуйщем варианте"}
+
+        
+        // P.s. Сер, над ещё выбор с создаваемыми, отдельными кармами, чтобы обращаться к ним тоже. 
+
 
         public static Dictionary<String, Command> Commands { get; } = new Dictionary<string, Command>()
         {
-            {"SetBackground", SetBackground},           // imageName
-            {"SetMusic", SetMusic},                     // musicName
+            {"SetBackground", SetBackground},           // imageName + .extension
+            {"SetMusic", SetMusic},                     // musicName + .extension
+            {"SetSound", SetSound},                     // soundName + .extension
             {"GoNextFile", GoNextFile},                 // fileName
             {"CreateOptionBlock", CreateOptionBlock},   // File1(karmaWeight), File2(karmaWeight), .... { Var1, Var2, ... }
             {"AddHero",  AddHero},                      // characterName, characterColor, position
@@ -34,7 +65,7 @@ namespace SKA_Novel.Classes.Technical
             {"GoThisLine", GoThisLine},                 // lineNumber
             {"MirrorHero", MirrorHero},                 // characterName, position
             {"CheckKarma", CheckKarma},                 // needKarmaLevel, lineNumber (go to this line if KarmaLevel < needKarmaLevel)
-            {"SetSound", SetSound},                     // soundName
+
             {"SetHeroAnimation", SetHeroAnimation}      // characterName, position, animationSpeedMilliseconds { Sprite1, Sprite2, ... }
         };
 

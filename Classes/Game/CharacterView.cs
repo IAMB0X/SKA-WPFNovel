@@ -14,9 +14,9 @@ namespace SKA_Novel.Classes.Game
 {
     internal class CharacterView : System.Windows.Controls.Image
     {
-        public Character Character { get; }
-        public SolidColorBrush CharacterColor;
-        public string Emotion = "neutral";
+        public Character Character { get; } 
+        public SolidColorBrush CharacterColor; 
+        public string Emotion = "neutral"; 
         public byte CurrentPosition;
 
         public DispatcherTimer AnimationTimer = new DispatcherTimer();
