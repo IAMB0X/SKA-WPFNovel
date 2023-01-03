@@ -1,0 +1,103 @@
+﻿<Window x:Class="SKA_Novel.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SKA_Novel"
+        mc:Ignorable="d"
+        Title="SKA Novel" Height="450" Width="800" ResizeMode="NoResize" WindowState="Maximized" WindowStyle="None"
+        Background="#000" Keyboard.KeyUp="Window_KeyDown">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1.1*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <DockPanel x:Name="HeroPosition1" Grid.Column="0" Grid.RowSpan="2"
+                MouseDown="brdMainText_MouseDown"/>
+        <DockPanel x:Name="HeroPosition2" Grid.ColumnSpan="2" Grid.RowSpan="2"
+                MouseDown="brdMainText_MouseDown"/>
+        <DockPanel x:Name="HeroPosition3" Grid.Column="1" Grid.RowSpan="2"
+                MouseDown="brdMainText_MouseDown"/>
+
+        <Border x:Name="btClose" BorderBrush="DarkRed" BorderThickness="2" Background="#fff" Grid.Column="2"
+                VerticalAlignment="Top" HorizontalAlignment="Right" CornerRadius="50" Margin="20"
+                Height="65" Width="65" MouseDown="btClose_MouseDown">
+            <Image Source="/bin/Debug/Resources/Images/cancel.png"/>
+        </Border>
+        
+        <Border x:Name="brdMainText" Background="#000" BorderBrush="#fff" BorderThickness="2" Opacity="0.8"
+                CornerRadius="20" Grid.Row="1" Margin="15" Grid.ColumnSpan="2">
+
+            <DockPanel>
+
+                <StackPanel DockPanel.Dock="Right">
+
+                    <Border x:Name="btVolume" BorderBrush="DarkRed" BorderThickness="2" Background="#fff"
+                            CornerRadius="40" Margin="5" Height="55" Width="55" MouseDown="btVolume_MouseDown">
+                        <Image x:Name="imgVolume" Source="/bin/Debug/Resources/Images/volume.png"/>
+                    </Border>
+
+                    <Border x:Name="btSave" BorderBrush="DarkRed" BorderThickness="2" Background="#fff"
+                            CornerRadius="10" Margin="5" Height="55" Width="55" MouseDown="btSave_MouseDown">
+                        <Image Source="/bin/Debug/Resources/Images/floppy-disk.png"/>
+                    </Border>
+
+                </StackPanel>
+
+                <DockPanel MouseDown="brdMainText_MouseDown" Margin="15">
+                    <TextBlock x:Name="txtCurrentCharacter" FontSize="36" FontWeight="Black"
+                               TextAlignment="Left" DockPanel.Dock="Top"/>
+                    <TextBlock x:Name="txtMainText" TextAlignment="Left"/>
+                </DockPanel>
+
+            </DockPanel>
+
+        </Border>
+
+        <Border Background="#000" Opacity="0.75" VerticalAlignment="Center"
+                Grid.ColumnSpan="2" CornerRadius="50" Margin="25">
+            <StackPanel x:Name="stckPnlOptions" HorizontalAlignment="Center"/>
+        </Border>
+
+        <Grid x:Name="gridMainMenu" Grid.ColumnSpan="2" Grid.RowSpan="2">
+
+            <Image Source="/Resources/outside.jpg" Stretch="Fill">
+                <Image.Effect>
+                    <BlurEffect Radius="10" KernelType="Gaussian"/>
+                </Image.Effect>
+            </Image>
+
+            <Border CornerRadius="40" Background="#000" BorderBrush="#fff" BorderThickness="2"
+                        Opacity="0.85" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                <StackPanel>
+                    <TextBlock x:Name="appTitle" Text="МЕГАНАЗВАНИЕ&#x0a;МЕГАНОВЕЛЛЫ" Margin="35" FontSize="120" FontFamily="Mistral"
+                           FontWeight="ExtraBlack" FontStyle="Italic" TextWrapping="Wrap" TextAlignment="Center"/>
+
+                    <TextBlock x:Name="btStartGame" Text="НОВАЯ ИГРА" Margin="20" FontSize="54"
+                           FontWeight="ExtraBlack" MouseDown="btStartGame_MouseDown"/>
+
+                    <TextBlock x:Name="btLoadGame" Text="ЗАГРУЗКА" Margin="20" FontSize="54"
+                           FontWeight="ExtraBlack" MouseDown="btLoadGame_MouseDown"/>
+
+                    <TextBlock x:Name="btExit" Text="ВЫХОД" Margin="20" FontSize="54"
+                           FontWeight="ExtraBlack" MouseDown="btClose_MouseDown"/>
+
+                </StackPanel>
+
+            </Border>
+
+        </Grid>
+
+        <DockPanel x:Name="DarkScreen" Background="#000" Grid.ColumnSpan="2" Grid.RowSpan="2"
+                   Opacity="0" Visibility="Collapsed"/>
+    </Grid>
+</Window>
