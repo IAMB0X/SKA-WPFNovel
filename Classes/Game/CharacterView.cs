@@ -19,6 +19,10 @@ namespace SKA_Novel.Classes.Game
         public string Emotion = "neutral";
         public byte CurrentPosition;
 
+        public DispatcherTimer AnimationTimer = new DispatcherTimer();
+        private List<string> animationSprites;
+        private int animationIndex = 0;
+
         public CharacterView(Character character, string characterColor, byte position)
         {
             Character = character;
@@ -27,6 +31,30 @@ namespace SKA_Novel.Classes.Game
             SetPosition();
         }
 
+        public void SetAnimation(List<string> sprites, int speedMilliseconds)
+        {
+            animationSprites = sprites;
+            AnimationTimer.Interval = TimeSpan.FromMilliseconds(speedMilliseconds);
+            AnimationTimer.Tick += UpdateSprite;
+            AnimationTimer.Start();
+        }
+
+        public void StopAnimation()
+        {
+            AnimationTimer.Stop();
+            animationIndex = 0;
+            animationSprites = null;
+        }
+
+        public void UpdateSprite(object sender, EventArgs e)
+        {
+            if (animationIndex + 1 < animationSprites.Count)
+                animationIndex++;
+            else
+                animationIndex = 0;
+
+            UpdateImageSource(animationSprites[animationIndex]);
+        }
         public void UpdateEmotion(string emotionName)
         {
             Margin = new System.Windows.Thickness(50);
@@ -40,7 +68,7 @@ namespace SKA_Novel.Classes.Game
 
         private void SetSmallImage(object sender, EventArgs e)
         {
-            if (Margin.Top == 10)
+            if (Margin.Top <= 10)
                 (sender as DispatcherTimer).Stop();
 
             Margin = new System.Windows.Thickness(Margin.Top - 10);

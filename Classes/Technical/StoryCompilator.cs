@@ -34,7 +34,8 @@ namespace SKA_Novel.Classes.Technical
             {"GoThisLine", GoThisLine},                 // lineNumber
             {"MirrorHero", MirrorHero},                 // characterName, position
             {"CheckKarma", CheckKarma},                 // needKarmaLevel, lineNumber (go to this line if KarmaLevel < needKarmaLevel)
-            {"SetSound", SetSound}                      // soundName
+            {"SetSound", SetSound},                     // soundName
+            {"SetHeroAnimation", SetHeroAnimation}      // characterName, position, animationSpeedMilliseconds { Sprite1, Sprite2, ... }
         };
 
 
@@ -164,6 +165,31 @@ namespace SKA_Novel.Classes.Technical
                 if (character.Character.FullName == arguments[0].Trim())
                 {
                     character.UpdateEmotion(arguments[2].Trim());
+                    break;
+                }
+        }
+
+        public static void SetHeroAnimation(string codeString)
+        {
+            string[] arguments = GetArguments(codeString).Split(',');
+            byte position = Convert.ToByte(arguments[1].Trim());
+
+            foreach (Game.CharacterView character in ControlsManager.HeroPositions[--position].Children)
+                if (character.Character.FullName == arguments[0].Trim())
+                {
+                    List<string> sprites = new List<string>();
+
+                    LineOfStory++;
+                    string currentLine = CurrentStory[LineOfStory];
+                    while (currentLine != "}")
+                    {
+                        LineOfStory++;
+                        currentLine = CurrentStory[LineOfStory];
+                        if (currentLine != "}")
+                            sprites.Add(currentLine);
+                    }
+
+                    character.SetAnimation(sprites, Convert.ToInt16(arguments[2]));
                     break;
                 }
         }
