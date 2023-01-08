@@ -24,8 +24,10 @@ namespace SKA_Novel.Classes.Technical
         //Файлы
 
         //{"ChangeBackground", "Изменение заднего фона, принимает: имя фона + расширение"},
-        //{"ChangeMusic", "Изменение музыки, принимает: имя музыки + расширение"},
-        //{"GoNextFile", "Переход к новому файлу, принимает: имя файла"}
+        //{"SetMusic", "Воспроизведение музыки, принимает: имя музыки + расширение"},
+        //{"SetSound", "Воспроизведение звука, принимает: имя звука + расширение"},
+        //{"SetEnv", "Воспроизведение окружения, принимает: имя звука окружения + расширение"},
+        //{"GoNextFile", "Переход к новому файлу, принимает: имя файла" P.s. можно ходить по директориям через /}
 
         //Текст
 
@@ -48,7 +50,7 @@ namespace SKA_Novel.Classes.Technical
 
         //{"CreateOptionBlock", "Выбор, отправляет в выбранный файл + число кармы, при соответсвуйщем варианте"}
 
-        
+
         // P.s. Сер, над ещё выбор с создаваемыми, отдельными кармами, чтобы обращаться к ним тоже. 
 
 
@@ -57,6 +59,7 @@ namespace SKA_Novel.Classes.Technical
             {"SetBackground", SetBackground},           // imageName + .extension
             {"SetMusic", SetMusic},                     // musicName + .extension
             {"SetSound", SetSound},                     // soundName + .extension
+            {"SetEnv", SetEnv},                         // envName + .extension
             {"GoNextFile", GoNextFile},                 // fileName
             {"CreateOptionBlock", CreateOptionBlock},   // File1(karmaWeight), File2(karmaWeight), .... { Var1, Var2, ... }
             {"AddHero",  AddHero},                      // characterName, characterColor, position
@@ -169,6 +172,11 @@ namespace SKA_Novel.Classes.Technical
         public static void SetSound(string codeString)
         {
             MediaHelper.SetSound(GetArguments(codeString));
+        }
+
+        public static void SetEnv(string codeString)
+        {
+                MediaHelper.SetEnvsound(GetArguments(codeString));
         }
 
         public static void AddHero(string codeString)

@@ -17,6 +17,8 @@ namespace SKA_Novel.Classes.Technical
         public static readonly string BackgroundsDirectory = ImagesDirectory + "Backgrounds\\";
         public static readonly string FilesDirectory = BaseDirectory + "Files\\";
         public static readonly string MusicDirectory = BaseDirectory + "Music\\";
+        public static readonly string SoundDirectory = BaseDirectory + "Sound\\";
+        public static readonly string EnvDirectory = BaseDirectory + "Enviroment\\";
         public static string CurrentFile;
         public static string CurrentMusic;
         public static string CurrentBackground;
@@ -24,6 +26,7 @@ namespace SKA_Novel.Classes.Technical
 
         public static MediaPlayer MainMusicPlayer = new MediaPlayer();
         public static MediaPlayer MainSoundPlayer = new MediaPlayer();
+        public static MediaPlayer MainEnvPlayer = new MediaPlayer();
 
         public static string GetTextFromFile(string fileName)
         {
@@ -47,37 +50,47 @@ namespace SKA_Novel.Classes.Technical
                 ImageSource = new BitmapImage(new Uri(BackgroundsDirectory + backgroundName))
             };
         }
+        public static void SetEnvsound(string envName) // Звуки фонового окружения - зациклены
+        {
+            MainEnvPlayer.Stop();
+            MainEnvPlayer.Open(new Uri(EnvDirectory + envName));
 
-        public static void SetGameMusic(string musicName)
+            MainEnvPlayer.MediaEnded += EnvFinish;
+            MainEnvPlayer.Play();
+        }
+
+        private static void EnvFinish(object sender, EventArgs e)
+        {
+            MainEnvPlayer.Position = TimeSpan.Zero;
+            MainEnvPlayer.Play();
+        }
+        public static void SetSound(string soundName) // Звуки - не зациклены
+        {
+            MainSoundPlayer.Stop();
+            MainSoundPlayer.Open(new Uri(SoundDirectory + soundName));
+
+            MainSoundPlayer.Play();
+        }
+        public static void SetGameMusic(string musicName) // Музыка - зациклена
         {
             CurrentMusic = musicName;
             MainMusicPlayer.Stop();
             MainMusicPlayer.Open(new Uri(MusicDirectory + musicName));
 
-            MainMusicPlayer.MediaEnded += MusicFinish;
+            MainMusicPlayer.MediaEnded += EnvFinish;
             MainMusicPlayer.Play();
         }
-
-        public static void SetSound(string soundName)
-        {
-            MainSoundPlayer.Stop();
-            MainSoundPlayer.Open(new Uri(MusicDirectory + soundName));
-
-            MainSoundPlayer.Play();
-        }
-
         private static void MusicFinish(object sender, EventArgs e)
         {
             MainMusicPlayer.Position = TimeSpan.Zero;
             MainMusicPlayer.Play();
         }
-
         public static void SaveGame()
         {
             StreamWriter writer = new StreamWriter(FilesDirectory + "\\SystemFiles\\Save.txt");
-            writer.WriteLine(CurrentFile);
-            writer.WriteLine(StoryCompilator.LineOfStory);
-            writer.WriteLine(ControlsManager.KarmaLevel);
+            writer.WriteLine(CurrentFile); //Сохраняет название файла
+            writer.WriteLine(StoryCompilator.LineOfStory); //Сохраняет номер строки
+            writer.WriteLine(ControlsManager.KarmaLevel); //Сохраняет карму
             writer.Close();
         }
 
