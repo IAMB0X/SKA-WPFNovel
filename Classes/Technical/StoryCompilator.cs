@@ -1,9 +1,11 @@
-﻿using System;
+﻿using SKA_Novel.Classes.Game;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -44,7 +46,8 @@ namespace SKA_Novel.Classes.Technical
         //{"ClearHero", "Стерает героя с позиции: позиция"}
         //{"SetHeroEmotion", "Меняет эмоцию: имя героя, позиция, название эмоции"}
         //{"MirrorHero", "Отражает героя: имя героя, позиция"}
-        //{"SetHeroAnimation", Задаёт анимацию: имя героя, позиция, скорость в милисекундах {Спрайт 1, Спрайт 2, ... }  }
+        //{"SetHeroAnimation", Задаёт анимацию: имя героя, позиция, скорость в милисекундах {Спрайт 1, Спрайт 2, ... } } Потом упрощу, чтобы сам прибавлял Название анимации_++Цифра.png
+        //{"StopAnimation", Останавливает анимацию: имя героя, позиция }
 
         //Выбор
 
@@ -52,6 +55,7 @@ namespace SKA_Novel.Classes.Technical
 
 
         // P.s. Сер, над ещё выбор с создаваемыми, отдельными кармами, чтобы обращаться к ним тоже. 
+        // Задать функцию перехода с разным цветом
 
 
         public static Dictionary<String, Command> Commands { get; } = new Dictionary<string, Command>()
@@ -68,8 +72,8 @@ namespace SKA_Novel.Classes.Technical
             {"GoThisLine", GoThisLine},                 // lineNumber
             {"MirrorHero", MirrorHero},                 // characterName, position
             {"CheckKarma", CheckKarma},                 // needKarmaLevel, lineNumber (go to this line if KarmaLevel < needKarmaLevel)
-
-            {"SetHeroAnimation", SetHeroAnimation}      // characterName, position, animationSpeedMilliseconds { Sprite1, Sprite2, ... }
+            {"SetHeroAnimation", SetHeroAnimation},      // characterName, position, animationSpeedMilliseconds { Sprite1, Sprite2, ... }
+            {"StopAnimation", StopAnimation},           // characterName, position
         };
 
 
@@ -208,29 +212,45 @@ namespace SKA_Novel.Classes.Technical
                 }
         }
 
-        public static void SetHeroAnimation(string codeString)
+        public static void SetHeroAnimation(string codeString)      // Анимация
         {
-            string[] arguments = GetArguments(codeString).Split(',');
-            byte position = Convert.ToByte(arguments[1].Trim());
+            string[] arguments = GetArguments(codeString).Split(',');                                   //Разбивает текст на аргументы разделяемые ","
+            byte position = Convert.ToByte(arguments[1].Trim());                                        //Определяет позицию из 1-го аргумента
 
             foreach (Game.CharacterView character in ControlsManager.HeroPositions[--position].Children)
-                if (character.Character.FullName == arguments[0].Trim())
+                if (character.Character.FullName == arguments[0].Trim())                                //Если имя соответствуем имени в аргументе 0, то
                 {
-                    List<string> sprites = new List<string>();
+                    List<string> sprites = new List<string>();      //Задаем переменную спрайтов
 
                     LineOfStory++;
-                    string currentLine = CurrentStory[LineOfStory];
-                    while (currentLine != "}")
+                    string currentLine = CurrentStory[LineOfStory]; //Текущая строка = обращение к строке истории
+                    while (currentLine != "}")                      //Пока текущая строка != }  
                     {
-                        LineOfStory++;
-                        currentLine = CurrentStory[LineOfStory];
-                        if (currentLine != "}")
-                            sprites.Add(currentLine);
+                        LineOfStory++;                              //Переходим на след. строку
+                        currentLine = CurrentStory[LineOfStory];    //Получаем текущую строку
+                        if (currentLine != "}")                     //Если строка != }
+                            sprites.Add(currentLine);               //То добавляем имя спрайта с этой строки
                     }
 
                     character.SetAnimation(sprites, Convert.ToInt16(arguments[2]));
                     break;
                 }
+        }
+
+        public static void StopAnimation(string codeString)
+        {
+            string[] arguments = GetArguments(codeString).Split(',');                                   //Разбивает текст на аргументы разделяемые ","
+            byte position = Convert.ToByte(arguments[1].Trim());                                        //Определяет позицию из 1-го аргумента
+
+            foreach (Game.CharacterView character in ControlsManager.HeroPositions[--position].Children)
+                if (character.Character.FullName == arguments[0].Trim())
+                {
+                    character.StopAnimation();
+                break;
+                }
+
+
+
         }
 
         public static void MirrorHero(string codeString)

@@ -50,29 +50,30 @@ namespace SKA_Novel.Classes.Technical
                 ImageSource = new BitmapImage(new Uri(BackgroundsDirectory + backgroundName))
             };
         }
-        public static void SetEnvsound(string envName) // Звуки фонового окружения - зациклены
+        public static void SetEnvsound(string envName)              // Звуки фонового окружения - зациклены
         {
-            MainEnvPlayer.Stop();
-            MainEnvPlayer.Open(new Uri(EnvDirectory + envName));
+            MainEnvPlayer.Stop();                                   //Завершает
+            MainEnvPlayer.Open(new Uri(EnvDirectory + envName));    //Открывает из своей директории название файла
 
-            MainEnvPlayer.MediaEnded += EnvFinish;
-            MainEnvPlayer.Play();
+            MainEnvPlayer.MediaEnded += EnvFinish;                  //Медиа заканчивается обращается к EnvFinish
+            MainEnvPlayer.Play();                                   //Воспроизводит
         }
 
-        private static void EnvFinish(object sender, EventArgs e)
+        private static void EnvFinish(object sender, EventArgs e)   // Звуки фонового окружения заново
         {
-            MainEnvPlayer.Position = TimeSpan.Zero;
-            MainEnvPlayer.Play();
+            MainEnvPlayer.Position = TimeSpan.Zero;                 //Перематывает на начало 0:00
+            MainEnvPlayer.Play();                                   //Воспроизводит
         }
-        public static void SetSound(string soundName) // Звуки - не зациклены
+        public static void SetSound(string soundName)               // Звуки - не зациклены
+                                                                    //Работает также
         {
             MainSoundPlayer.Stop();
             MainSoundPlayer.Open(new Uri(SoundDirectory + soundName));
 
             MainSoundPlayer.Play();
         }
-        public static void SetGameMusic(string musicName) // Музыка - зациклена
-        {
+        public static void SetGameMusic(string musicName)           // Музыка - зациклена
+        {                                                           //Работает также
             CurrentMusic = musicName;
             MainMusicPlayer.Stop();
             MainMusicPlayer.Open(new Uri(MusicDirectory + musicName));
@@ -85,12 +86,12 @@ namespace SKA_Novel.Classes.Technical
             MainMusicPlayer.Position = TimeSpan.Zero;
             MainMusicPlayer.Play();
         }
-        public static void SaveGame()
+        public static void SaveGame()                                                           // Сохранение
         {
-            StreamWriter writer = new StreamWriter(FilesDirectory + "\\SystemFiles\\Save.txt");
-            writer.WriteLine(CurrentFile); //Сохраняет название файла
-            writer.WriteLine(StoryCompilator.LineOfStory); //Сохраняет номер строки
-            writer.WriteLine(ControlsManager.KarmaLevel); //Сохраняет карму
+            StreamWriter writer = new StreamWriter(FilesDirectory + "\\SystemFiles\\Save.txt"); //Поток в файл сохранения
+            writer.WriteLine(CurrentFile);                                                      //Записывает текущего название файла
+            writer.WriteLine(StoryCompilator.LineOfStory);                                      //Записывает текущий номер строки
+            writer.WriteLine(ControlsManager.KarmaLevel);                                       //Записывает текущую карму
             writer.Close();
         }
 

@@ -80,7 +80,7 @@ namespace SKA_Novel
         private void btStartGame_MouseDown(object sender, MouseButtonEventArgs e)
         {
             ControlsManager.MainMenu.Visibility = Visibility.Collapsed;
-            StoryCompilator.GoNextFile("StartFile");
+            StoryCompilator.GoNextFile("TestFile"); // Стартовый файл истории, сейчас: тестовый
             StoryCompilator.GoNextLine();
         }
 

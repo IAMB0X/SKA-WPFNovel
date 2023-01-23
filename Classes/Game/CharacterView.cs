@@ -19,9 +19,9 @@ namespace SKA_Novel.Classes.Game
         public string Emotion = "neutral"; 
         public byte CurrentPosition;
 
-        public DispatcherTimer AnimationTimer = new DispatcherTimer();
-        private List<string> animationSprites;
-        private int animationIndex = 0;
+        public DispatcherTimer AnimationTimer = new DispatcherTimer(); //Таймер анимации
+        private List<string> animationSprites;                         //Лист спрайтов анимации, он же список кадров
+        private int animationIndex = 0;                                //Индекс анимации, он же номер текущий кадр. Далее индекс кадра.
 
         public CharacterView(Character character, string characterColor, byte position)
         {
@@ -33,27 +33,27 @@ namespace SKA_Novel.Classes.Game
 
         public void SetAnimation(List<string> sprites, int speedMilliseconds)
         {
-            animationSprites = sprites;
-            AnimationTimer.Interval = TimeSpan.FromMilliseconds(speedMilliseconds);
-            AnimationTimer.Tick += UpdateSprite;
-            AnimationTimer.Start();
+            animationSprites = sprites;                                             //Получает спрайты для анимации
+            AnimationTimer.Interval = TimeSpan.FromMilliseconds(speedMilliseconds); //Задает интервал времени между спрайтами
+            AnimationTimer.Tick += UpdateSprite;                                    //По истечению времени таймера обновляет спрайт 
+            AnimationTimer.Start();                                                 //Стартует таймер анимации
         }
 
-        public void StopAnimation()
+        public void StopAnimation()     // Остановка анимации
         {
-            AnimationTimer.Stop();
-            animationIndex = 0;
-            animationSprites = null;
+            AnimationTimer.Stop();      //Останавливает таймер анимации
+            animationIndex = 0;         //Задаёт индекс кадра = 0 
+            animationSprites = null;    //Обнуляет спрайты анимации
         }
 
-        public void UpdateSprite(object sender, EventArgs e)
+        public void UpdateSprite(object sender, EventArgs e)    // Обновление спрайта/кадра в анимации
         {
-            if (animationIndex + 1 < animationSprites.Count)
-                animationIndex++;
+            if (animationIndex + 1 < animationSprites.Count)     //Если "индекс кадра" + 1 < общее количество кадров
+                animationIndex++;                                //То прибавляет +1 к индексу кадра 
             else
-                animationIndex = 0;
+                animationIndex = 0;                              //Задает индекс кадра = 0, что по сути возвращает к первому кадру
 
-            UpdateImageSource(animationSprites[animationIndex]);
+            UpdateImageSource(animationSprites[animationIndex]); //Обновляет кадр обращаясь к списку спрайтов и индексу кадра, который мы ранее задали = 0
         }
         public void UpdateEmotion(string emotionName)
         {
