@@ -72,7 +72,7 @@ namespace SKA_Novel.Classes.Technical
             {"GoThisLine", GoThisLine},                 // lineNumber
             {"MirrorHero", MirrorHero},                 // characterName, position
             {"CheckKarma", CheckKarma},                 // needKarmaLevel, lineNumber (go to this line if KarmaLevel < needKarmaLevel)
-            {"SetHeroAnimation", SetHeroAnimation},      // characterName, position, animationSpeedMilliseconds { Sprite1, Sprite2, ... }
+            {"SetHeroAnimation", SetHeroAnimation},     // characterName, position, animationSpeedMilliseconds { Sprite1, Sprite2, ... }
             {"StopAnimation", StopAnimation},           // characterName, position
         };
 
@@ -216,25 +216,35 @@ namespace SKA_Novel.Classes.Technical
         {
             string[] arguments = GetArguments(codeString).Split(',');                                   //Разбивает текст на аргументы разделяемые ","
             byte position = Convert.ToByte(arguments[1].Trim());                                        //Определяет позицию из 1-го аргумента
+            byte framesCount = Convert.ToByte(arguments[3].Trim());
+            byte spriteNumber = 0;
+            bool animationLoop = (arguments[4].Trim() == "loop");
 
             foreach (Game.CharacterView character in ControlsManager.HeroPositions[--position].Children)
                 if (character.Character.FullName == arguments[0].Trim())                                //Если имя соответствуем имени в аргументе 0, то
                 {
-                    List<string> sprites = new List<string>();      //Задаем переменную спрайтов
+                    List<string> sprites = new List<string>();      //Лист спрайтов
 
                     LineOfStory++;
-                    string currentLine = CurrentStory[LineOfStory]; //Текущая строка = обращение к строке истории
-                    while (currentLine != "}")                      //Пока текущая строка != }  
+                    string currentLine = CurrentStory[LineOfStory];
+                    while (currentLine != "}")
                     {
-                        LineOfStory++;                              //Переходим на след. строку
-                        currentLine = CurrentStory[LineOfStory];    //Получаем текущую строку
-                        if (currentLine != "}")                     //Если строка != }
-                            sprites.Add(currentLine);               //То добавляем имя спрайта с этой строки
+                        LineOfStory++;
+                        while (framesCount != 0) 
+                            {
+                                framesCount--;                                                                           //Вычитаем из общего кол-ва кадров -1
+                                spriteNumber++;                                                                          //Прибавляем к номеру спрайта 1
+                                currentLine = "anim/" + CurrentStory[LineOfStory] + "_" + Convert.ToString(spriteNumber);//Преобразуем текст строки в название спрайта
+                                if (currentLine != "}")                                                                  //Если строка не "}"
+                                    sprites.Add(currentLine);                                                            //То добавляем имя спрайта
+                            }
+                        character.SetAnimation(sprites, Convert.ToInt16(arguments[2]), animationLoop);
+                        LineOfStory++;
+                        break;
                     }
-
-                    character.SetAnimation(sprites, Convert.ToInt16(arguments[2]));
-                    break;
+                    
                 }
+
         }
 
         public static void StopAnimation(string codeString)

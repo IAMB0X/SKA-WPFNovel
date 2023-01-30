@@ -17,8 +17,8 @@ namespace SKA_Novel.Classes.Technical
         public static readonly string BackgroundsDirectory = ImagesDirectory + "Backgrounds\\";
         public static readonly string FilesDirectory = BaseDirectory + "Files\\";
         public static readonly string MusicDirectory = BaseDirectory + "Music\\";
-        public static readonly string SoundDirectory = BaseDirectory + "Sound\\";
-        public static readonly string EnvDirectory = BaseDirectory + "Enviroment\\";
+        public static readonly string SoundDirectory = MusicDirectory + "Sound\\";
+        public static readonly string EnvDirectory = MusicDirectory + "Enviroment\\";
         public static string CurrentFile;
         public static string CurrentMusic;
         public static string CurrentBackground;
@@ -53,10 +53,18 @@ namespace SKA_Novel.Classes.Technical
         public static void SetEnvsound(string envName)              // Звуки фонового окружения - зациклены
         {
             MainEnvPlayer.Stop();                                   //Завершает
-            MainEnvPlayer.Open(new Uri(EnvDirectory + envName));    //Открывает из своей директории название файла
+            FileModule envFile = new FileModule();
+            envFile.FileCheck(envName, EnvDirectory);
+            if (envFile.fileExists)
+            {
+                MainEnvPlayer.Open(new Uri(envFile.checkedFile));    //Открывает из своей директории название файла
 
-            MainEnvPlayer.MediaEnded += EnvFinish;                  //Медиа заканчивается обращается к EnvFinish
-            MainEnvPlayer.Play();                                   //Воспроизводит
+                MainEnvPlayer.MediaEnded += EnvFinish;                  //Медиа заканчивается обращается к EnvFinish
+                MainEnvPlayer.Play();                                   //Воспроизводит
+
+            }
+            else
+                return;
         }
 
         private static void EnvFinish(object sender, EventArgs e)   // Звуки фонового окружения заново
@@ -68,18 +76,30 @@ namespace SKA_Novel.Classes.Technical
                                                                     //Работает также
         {
             MainSoundPlayer.Stop();
-            MainSoundPlayer.Open(new Uri(SoundDirectory + soundName));
-
-            MainSoundPlayer.Play();
+            FileModule soundFile = new FileModule();
+            soundFile.FileCheck(soundName, SoundDirectory);
+            if (soundFile.fileExists)
+            {
+                MainSoundPlayer.Open(new Uri(soundFile.checkedFile));
+                MainSoundPlayer.Play();
+            }
+            else
+                return;
         }
         public static void SetGameMusic(string musicName)           // Музыка - зациклена
         {                                                           //Работает также
             CurrentMusic = musicName;
             MainMusicPlayer.Stop();
-            MainMusicPlayer.Open(new Uri(MusicDirectory + musicName));
-
-            MainMusicPlayer.MediaEnded += EnvFinish;
-            MainMusicPlayer.Play();
+            FileModule musicFile = new FileModule();
+            musicFile.FileCheck(musicName, MusicDirectory);
+            if (musicFile.fileExists)
+            {
+                MainMusicPlayer.Open(new Uri(musicFile.checkedFile));
+                MainMusicPlayer.MediaEnded += MusicFinish;
+                MainMusicPlayer.Play();
+            }
+            else
+                return;
         }
         private static void MusicFinish(object sender, EventArgs e)
         {

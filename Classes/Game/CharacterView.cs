@@ -21,7 +21,8 @@ namespace SKA_Novel.Classes.Game
 
         public DispatcherTimer AnimationTimer = new DispatcherTimer(); //Таймер анимации
         private List<string> animationSprites;                         //Лист спрайтов анимации, он же список кадров
-        private int animationIndex = 0;                                //Индекс анимации, он же номер текущий кадр. Далее индекс кадра.
+        public int animationIndex = 0;                                //Индекс анимации, он же номер текущий кадр. Далее индекс кадра.
+        public bool animationcycle;
 
         public CharacterView(Character character, string characterColor, byte position)
         {
@@ -31,8 +32,9 @@ namespace SKA_Novel.Classes.Game
             SetPosition();
         }
 
-        public void SetAnimation(List<string> sprites, int speedMilliseconds)
+        public void SetAnimation(List<string> sprites, int speedMilliseconds, bool animationLoop)
         {
+            animationcycle = animationLoop;
             animationSprites = sprites;                                             //Получает спрайты для анимации
             AnimationTimer.Interval = TimeSpan.FromMilliseconds(speedMilliseconds); //Задает интервал времени между спрайтами
             AnimationTimer.Tick += UpdateSprite;                                    //По истечению времени таймера обновляет спрайт 
@@ -48,13 +50,20 @@ namespace SKA_Novel.Classes.Game
 
         public void UpdateSprite(object sender, EventArgs e)    // Обновление спрайта/кадра в анимации
         {
-            if (animationIndex + 1 < animationSprites.Count)     //Если "индекс кадра" + 1 < общее количество кадров
-                animationIndex++;                                //То прибавляет +1 к индексу кадра 
-            else
-                animationIndex = 0;                              //Задает индекс кадра = 0, что по сути возвращает к первому кадру
-
             UpdateImageSource(animationSprites[animationIndex]); //Обновляет кадр обращаясь к списку спрайтов и индексу кадра, который мы ранее задали = 0
+
+            if (animationIndex + 1 < animationSprites.Count)     //Если "индекс кадра" + 1 < общее количество кадров
+                    animationIndex++;                                //То прибавляет +1 к индексу кадра 
+                else
+                    if (animationcycle)
+                    animationIndex = 0;                              //Задает индекс кадра = 0, что по сути возвращает к первому кадру
+                else
+                    StopAnimation();
+
+
+            
         }
+
         public void UpdateEmotion(string emotionName)
         {
             Margin = new System.Windows.Thickness(50);

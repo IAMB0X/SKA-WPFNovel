@@ -68,6 +68,7 @@
     <Compile Include="Classes\Game\CharacterView.cs" />
     <Compile Include="Classes\Game\GameOption.cs" />
     <Compile Include="Classes\Technical\ControlsManager.cs" />
+    <Compile Include="Classes\Technical\FileModule.cs" />
     <Compile Include="Classes\Technical\MediaHelper.cs" />
     <Compile Include="Classes\Technical\StoryCompilator.cs" />
     <Compile Include="Classes\Technical\TypingTimer.cs" />
