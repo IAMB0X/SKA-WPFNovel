@@ -123,17 +123,35 @@ namespace SKA_Novel.Classes.Technical
 
         public static void SetBackground(string codeString)
         {
-            if (MediaHelper.CurrentBackground != GetArguments(codeString))
+                MediaHelper.SetBackground(GetArguments(codeString));
+        }
+
+        public static void AnimationBackground (string background)
+        {
+            if (MediaHelper.CurrentBackground != GetArguments(background))
             {
-                MediaHelper.CurrentBackground = GetArguments(codeString);
+                MediaHelper.CurrentBackground = GetArguments(background);
                 MainWindow.AllowKeys = false;
                 ControlsManager.DarkScreen.Visibility = System.Windows.Visibility.Visible;
-                _helpVariable = codeString;
+                _helpVariable = background;
                 ControlsManager.DarkScreenTimer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(30) };
                 ControlsManager.DarkScreenTimer.Tick += ChangeOpacityDarkScreen;
                 ControlsManager.DarkScreenTimer.Start();
             }
-            
+        }
+
+        public static void DarkScreen (string background)
+        {
+            if (MediaHelper.CurrentBackground != GetArguments(background))
+            {
+                MediaHelper.CurrentBackground = GetArguments(background);
+                MainWindow.AllowKeys = false;
+                ControlsManager.DarkScreen.Visibility = System.Windows.Visibility.Visible;
+                _helpVariable = background;
+                ControlsManager.DarkScreenTimer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(30) };
+                ControlsManager.DarkScreenTimer.Tick += ChangeOpacityDarkScreen;
+                ControlsManager.DarkScreenTimer.Start();
+            }
         }
 
         private static string _helpVariable;
@@ -258,8 +276,6 @@ namespace SKA_Novel.Classes.Technical
                     character.StopAnimation();
                 break;
                 }
-
-
 
         }
 

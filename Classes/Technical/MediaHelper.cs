@@ -14,7 +14,7 @@ namespace SKA_Novel.Classes.Technical
     {
         public static readonly string BaseDirectory = AppDomain.CurrentDomain.BaseDirectory + "Resources\\";
         public static readonly string ImagesDirectory = BaseDirectory + "Images\\";
-        public static readonly string BackgroundsDirectory = ImagesDirectory + "Backgrounds\\";
+        public static readonly string BackgroundDirectory = ImagesDirectory + "Backgrounds\\";
         public static readonly string FilesDirectory = BaseDirectory + "Files\\";
         public static readonly string MusicDirectory = BaseDirectory + "Music\\";
         public static readonly string SoundDirectory = MusicDirectory + "Sound\\";
@@ -44,18 +44,25 @@ namespace SKA_Novel.Classes.Technical
 
         public static void SetBackground(string backgroundName)
         {
-            CurrentBackground = backgroundName;
-            ControlsManager.AppMainWindow.Background = new ImageBrush()
+            FileModule backgroundFile = new FileModule();
+            backgroundFile.FileCheck(backgroundName, BackgroundDirectory);
+            if (backgroundFile.FileCheck(backgroundName, BackgroundDirectory))
             {
-                ImageSource = new BitmapImage(new Uri(BackgroundsDirectory + backgroundName))
-            };
+                ControlsManager.AppMainWindow.Background = new ImageBrush()
+                {
+                    ImageSource = new BitmapImage(new Uri(backgroundFile.checkedFile))
+                };
+
+                StoryCompilator.AnimationBackground(backgroundFile.checkedFile);
+            }    
+
         }
         public static void SetEnvsound(string envName)              // Звуки фонового окружения - зациклены
         {
             MainEnvPlayer.Stop();                                   //Завершает
             FileModule envFile = new FileModule();
             envFile.FileCheck(envName, EnvDirectory);
-            if (envFile.fileExists)
+            if (envFile.FileCheck(envName, EnvDirectory))
             {
                 MainEnvPlayer.Open(new Uri(envFile.checkedFile));    //Открывает из своей директории название файла
 
@@ -63,8 +70,6 @@ namespace SKA_Novel.Classes.Technical
                 MainEnvPlayer.Play();                                   //Воспроизводит
 
             }
-            else
-                return;
         }
 
         private static void EnvFinish(object sender, EventArgs e)   // Звуки фонового окружения заново
@@ -78,28 +83,23 @@ namespace SKA_Novel.Classes.Technical
             MainSoundPlayer.Stop();
             FileModule soundFile = new FileModule();
             soundFile.FileCheck(soundName, SoundDirectory);
-            if (soundFile.fileExists)
+            if (soundFile.FileCheck(soundName, SoundDirectory))
             {
                 MainSoundPlayer.Open(new Uri(soundFile.checkedFile));
                 MainSoundPlayer.Play();
             }
-            else
-                return;
         }
         public static void SetGameMusic(string musicName)           // Музыка - зациклена
         {                                                           //Работает также
             CurrentMusic = musicName;
             MainMusicPlayer.Stop();
             FileModule musicFile = new FileModule();
-            musicFile.FileCheck(musicName, MusicDirectory);
-            if (musicFile.fileExists)
+            if (musicFile.FileCheck(musicName, MusicDirectory))
             {
                 MainMusicPlayer.Open(new Uri(musicFile.checkedFile));
                 MainMusicPlayer.MediaEnded += MusicFinish;
                 MainMusicPlayer.Play();
             }
-            else
-                return;
         }
         private static void MusicFinish(object sender, EventArgs e)
         {

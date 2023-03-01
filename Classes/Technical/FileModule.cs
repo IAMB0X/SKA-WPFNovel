@@ -10,35 +10,25 @@ namespace SKA_Novel.Classes.Technical
 {
     internal class FileModule
     {
-        public bool fileExists;
         public string checkedFile;
-        public static readonly List<string> musicExt = new List<string>() { ".wav", ".mp3", ".ogg", ""};
-        
-        public void FileCheck(string fileName, string directory)
+        public static readonly List<string> listExt = new List<string>() { ".png", ".jpg", ".jpeg", ".wav", ".mp3", ".ogg", null};
+
+        public bool FileCheck(string fileName, string directory)
         {
-            List<string> ext = musicExt;
-            int errors = 0;
+            List<string> ext = listExt;
+            bool isMatch = false;
             foreach (var myext in ext)
             {
                 FileInfo file = new FileInfo(directory + fileName + myext);
-                if (file.Exists)
+                isMatch = file.Exists;
+                if (isMatch)
                 {
                     checkedFile = Convert.ToString(file.FullName);
-                    break;
+                    return isMatch;
                 }
-                else
-                    errors++;
             }
-            if (errors == ext.Count)
-            {
-                fileExists = false;
-                return;
-            }
-            else
-            {
-                fileExists = true;
-                errors = 0;
-            }
+
+            return isMatch;
         }
     }
 }
