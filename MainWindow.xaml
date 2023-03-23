@@ -26,11 +26,11 @@
         <MediaElement Name="BackgroundVideo" Source="" Stretch="Fill" Grid.ColumnSpan="2" UnloadedBehavior="Manual" Grid.Row="1" />
 
         <DockPanel x:Name="HeroPosition1" Grid.Column="0"
-                MouseDown="brdMainText_MouseDown" Grid.Row="1"/>
+                MouseDown="brdMainText_MouseDown" Grid.Row="1" Grid.RowSpan="2"/>
         <DockPanel x:Name="HeroPosition2" Grid.ColumnSpan="2"
-                MouseDown="brdMainText_MouseDown" Grid.Row="1"/>
+                MouseDown="brdMainText_MouseDown" Grid.Row="1" Grid.RowSpan="2"/>
         <DockPanel x:Name="HeroPosition3" Grid.Column="1"
-                MouseDown="brdMainText_MouseDown" Grid.Row="1"/>
+                MouseDown="brdMainText_MouseDown" Grid.Row="1" Grid.RowSpan="2"/>
 
         <Border x:Name="btClose" BorderBrush="DarkRed" BorderThickness="2" Background="#fff" Grid.Column="2"
                 VerticalAlignment="Top" HorizontalAlignment="Right" CornerRadius="50" Margin="20"
@@ -82,7 +82,7 @@
 
         <Grid x:Name="gridMainMenu" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="3">
 
-            <Image Source="/Resources/outside.jpg" Stretch="Fill">
+            <Image Source="/коридор 2.png" Stretch="Fill">
                 <Image.Effect>
                     <BlurEffect Radius="10" KernelType="Gaussian"/>
                 </Image.Effect>

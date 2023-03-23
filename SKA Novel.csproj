@@ -100,8 +100,8 @@
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -124,14 +124,10 @@
     <Resource Include="bin\Debug\Resources\Images\floppy-disk.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\outside.jpg" />
+    <Resource Include="коридор 2.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\floor4.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="intro.mkv" />
-    <Content Include="intro3.mkv" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
