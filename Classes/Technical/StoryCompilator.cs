@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -74,6 +75,8 @@ namespace SKA_Novel.Classes.Technical
             {"CheckKarma", CheckKarma},                 // needKarmaLevel, lineNumber (go to this line if KarmaLevel < needKarmaLevel)
             {"SetHeroAnimation", SetHeroAnimation},     // characterName, position, animationSpeedMilliseconds { Sprite1, Sprite2, ... }
             {"StopAnimation", StopAnimation},           // characterName, position
+            {"SetVideo", SetVideo},                     // videoName
+            {"Cutscene", Cutscene},
         };
 
 
@@ -124,6 +127,16 @@ namespace SKA_Novel.Classes.Technical
         public static void SetBackground(string codeString)
         {
                 MediaHelper.SetBackground(GetArguments(codeString));
+        }
+
+        public static void SetVideo(string codeString)
+        {
+            MediaHelper.SetVideo(GetArguments(codeString));
+        }
+
+        public static void Cutscene(string codeString)
+        {
+            MediaHelper.Cutscene(GetArguments(codeString));
         }
 
         public static void AnimationBackground (string background)

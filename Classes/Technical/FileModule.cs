@@ -11,7 +11,7 @@ namespace SKA_Novel.Classes.Technical
     internal class FileModule
     {
         public string checkedFile;
-        public static readonly List<string> listExt = new List<string>() { ".png", ".jpg", ".jpeg", ".wav", ".mp3", ".ogg", null};
+        public static readonly List<string> listExt = new List<string>() { ".mp4",".mkv",".png", ".jpg", ".jpeg", ".wav", ".mp3", ".ogg", null};
 
         public bool FileCheck(string fileName, string directory)
         {

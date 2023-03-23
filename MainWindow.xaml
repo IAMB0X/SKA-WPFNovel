@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="SKA Novel" Height="450" Width="800" ResizeMode="NoResize" WindowState="Maximized" WindowStyle="None"
         Background="#000" Keyboard.KeyUp="Window_KeyDown">
+    
+
 
     <Grid>
 
@@ -20,6 +22,8 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
+        <MediaElement Name="BackgroundVideo" Source="" Stretch="Fill" Grid.ColumnSpan="2" Grid.RowSpan="2" UnloadedBehavior="Manual" />
+
         <DockPanel x:Name="HeroPosition1" Grid.Column="0" Grid.RowSpan="2"
                 MouseDown="brdMainText_MouseDown"/>
         <DockPanel x:Name="HeroPosition2" Grid.ColumnSpan="2" Grid.RowSpan="2"
@@ -32,7 +36,7 @@
                 Height="65" Width="65" MouseDown="btClose_MouseDown">
             <Image Source="/bin/Debug/Resources/Images/cancel.png"/>
         </Border>
-        
+
         <Border x:Name="brdMainText" Background="#000" BorderBrush="#fff" BorderThickness="2" Opacity="0.8"
                 CornerRadius="20" Grid.Row="1" Margin="15" Grid.ColumnSpan="2">
 
@@ -61,11 +65,16 @@
             </DockPanel>
 
         </Border>
+        <MediaElement Name="Cutscene" Source="" Stretch="Fill" Grid.ColumnSpan="2" Grid.RowSpan="2" UnloadedBehavior="Manual" />
 
         <Border Background="#000" Opacity="0.75" VerticalAlignment="Center"
                 Grid.ColumnSpan="2" CornerRadius="50" Margin="25">
+
             <StackPanel x:Name="stckPnlOptions" HorizontalAlignment="Center"/>
+            
         </Border>
+
+
 
         <Grid x:Name="gridMainMenu" Grid.ColumnSpan="2" Grid.RowSpan="2">
 
@@ -75,12 +84,13 @@
                 </Image.Effect>
             </Image>
 
+           
+
             <Border CornerRadius="40" Background="#000" BorderBrush="#fff" BorderThickness="2"
                         Opacity="0.85" HorizontalAlignment="Center" VerticalAlignment="Center">
 
                 <StackPanel>
-                    <TextBlock x:Name="appTitle" Text="МЕГАНАЗВАНИЕ&#x0a;МЕГАНОВЕЛЛЫ" Margin="35" FontSize="120" FontFamily="Mistral"
-                           FontWeight="ExtraBlack" FontStyle="Italic" TextWrapping="Wrap" TextAlignment="Center"/>
+                    <TextBlock x:Name="appTitle" Text=" SKA &#x0a; NOVEL " Margin="35" FontSize="120" FontFamily="Bahnschrift" FontStyle="Italic" TextWrapping="Wrap" TextAlignment="Center" FontWeight="Bold"/>
 
                     <TextBlock x:Name="btStartGame" Text="НОВАЯ ИГРА" Margin="20" FontSize="54"
                            FontWeight="ExtraBlack" MouseDown="btStartGame_MouseDown"/>
@@ -90,14 +100,23 @@
 
                     <TextBlock x:Name="btExit" Text="ВЫХОД" Margin="20" FontSize="54"
                            FontWeight="ExtraBlack" MouseDown="btClose_MouseDown"/>
+                    
 
                 </StackPanel>
 
             </Border>
+            
 
         </Grid>
 
         <DockPanel x:Name="DarkScreen" Background="#000" Grid.ColumnSpan="2" Grid.RowSpan="2"
                    Opacity="0" Visibility="Collapsed"/>
+
+
+
+        <Border Grid.ColumnSpan="2" Grid.RowSpan="2" Width="802">
+            
+        </Border>
     </Grid>
 </Window>
+    

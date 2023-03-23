@@ -129,5 +129,9 @@
   <ItemGroup>
     <Resource Include="Resources\floor4.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="intro.mkv" />
+    <Content Include="intro3.mkv" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

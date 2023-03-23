@@ -15,18 +15,21 @@ namespace SKA_Novel.Classes.Technical
         public static readonly string BaseDirectory = AppDomain.CurrentDomain.BaseDirectory + "Resources\\";
         public static readonly string ImagesDirectory = BaseDirectory + "Images\\";
         public static readonly string BackgroundDirectory = ImagesDirectory + "Backgrounds\\";
+        public static readonly string CutsceneDirectory = ImagesDirectory + "Cutscene\\";
         public static readonly string FilesDirectory = BaseDirectory + "Files\\";
-        public static readonly string MusicDirectory = BaseDirectory + "Music\\";
-        public static readonly string SoundDirectory = MusicDirectory + "Sound\\";
-        public static readonly string EnvDirectory = MusicDirectory + "Enviroment\\";
+        public static readonly string AudioDirectory = BaseDirectory + "Audio\\";
+        public static readonly string MusicDirectory = AudioDirectory + "Music\\" ;
+        public static readonly string SoundDirectory = AudioDirectory + "Sound\\";
+        public static readonly string EnvDirectory = AudioDirectory + "Enviroment\\";
         public static string CurrentFile;
         public static string CurrentMusic;
+        public static string CurrentEnviroment;
         public static string CurrentBackground;
 
 
         public static MediaPlayer MainMusicPlayer = new MediaPlayer();
         public static MediaPlayer MainSoundPlayer = new MediaPlayer();
-        public static MediaPlayer MainEnvPlayer = new MediaPlayer();
+        public static MediaPlayer MainEnvPlayer   = new MediaPlayer();
 
         public static string GetTextFromFile(string fileName)
         {
@@ -52,13 +55,59 @@ namespace SKA_Novel.Classes.Technical
                 {
                     ImageSource = new BitmapImage(new Uri(backgroundFile.checkedFile))
                 };
-
+                ControlsManager.BackgroundVideo.Stop();
+                ControlsManager.BackgroundVideo.Visibility = System.Windows.Visibility.Hidden;
                 StoryCompilator.AnimationBackground(backgroundFile.checkedFile);
             }    
-
         }
+
+        public static void SetVideo(string videoName)
+        {
+            FileModule videoFile = new FileModule();
+            videoFile.FileCheck(videoName, BackgroundDirectory);
+            if (videoFile.FileCheck(videoName, BackgroundDirectory))
+            {
+                ControlsManager.BackgroundVideo.Visibility = System.Windows.Visibility.Visible;
+                ControlsManager.BackgroundVideo.Source = new Uri (videoFile.checkedFile);
+                ControlsManager.BackgroundVideo.MediaEnded += VideoFinish;
+                ControlsManager.BackgroundVideo.Play();
+            };
+        }
+
+        private static void VideoFinish(object sender, EventArgs e)
+        {
+            ControlsManager.BackgroundVideo.Position = TimeSpan.Zero;
+            ControlsManager.BackgroundVideo.Play();
+        }
+
+        public static void Cutscene (string videoName)
+        {
+            FileModule videoFile = new FileModule();
+            videoFile.FileCheck(videoName, CutsceneDirectory);
+            if (videoFile.FileCheck(videoName, CutsceneDirectory))
+            {
+                MainWindow.AllowKeys = false;
+                MainMusicPlayer.Stop();
+                MainSoundPlayer.Stop();
+                MainEnvPlayer.Stop();
+                ControlsManager.Cutscene.Visibility = System.Windows.Visibility.Visible;
+                ControlsManager.Cutscene.Source = new Uri(videoFile.checkedFile);
+                ControlsManager.Cutscene.MediaEnded += CutsceneFinish;
+                ControlsManager.Cutscene.Play();
+            };
+        }
+
+        private static void CutsceneFinish(object sender, EventArgs e)
+        {
+            MainWindow.AllowKeys = true;
+            ControlsManager.Cutscene.Visibility = System.Windows.Visibility.Hidden;
+            SetGameMusic(CurrentMusic);
+            SetEnvsound(CurrentEnviroment);
+        }
+
         public static void SetEnvsound(string envName)              // Звуки фонового окружения - зациклены
         {
+            CurrentEnviroment = envName;
             MainEnvPlayer.Stop();                                   //Завершает
             FileModule envFile = new FileModule();
             envFile.FileCheck(envName, EnvDirectory);
@@ -108,7 +157,7 @@ namespace SKA_Novel.Classes.Technical
         }
         public static void SaveGame()                                                           // Сохранение
         {
-            StreamWriter writer = new StreamWriter(FilesDirectory + "\\SystemFiles\\Save.txt"); //Поток в файл сохранения
+            StreamWriter writer = new StreamWriter(FilesDirectory + "\\SystemFiles\\Save.txt");
             writer.WriteLine(CurrentFile);                                                      //Записывает текущего название файла
             writer.WriteLine(StoryCompilator.LineOfStory);                                      //Записывает текущий номер строки
             writer.WriteLine(ControlsManager.KarmaLevel);                                       //Записывает текущую карму
@@ -122,6 +171,7 @@ namespace SKA_Novel.Classes.Technical
             int lastString = Convert.ToInt16(reader.ReadLine());
             StoryCompilator.LineOfStory = 0;
             ControlsManager.KarmaLevel = Convert.ToInt16(reader.ReadLine());
+
             reader.Close();
 
             while (StoryCompilator.LineOfStory < lastString)
