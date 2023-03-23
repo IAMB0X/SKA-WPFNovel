@@ -76,7 +76,7 @@ namespace SKA_Novel.Classes.Technical
             {"SetHeroAnimation", SetHeroAnimation},     // characterName, position, animationSpeedMilliseconds { Sprite1, Sprite2, ... }
             {"StopAnimation", StopAnimation},           // characterName, position
             {"SetVideo", SetVideo},                     // videoName
-            {"Cutscene", Cutscene},
+            {"Cutscene", Cutscene},                     // videoName
         };
 
 
