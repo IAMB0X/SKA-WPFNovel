@@ -6,11 +6,14 @@
         xmlns:local="clr-namespace:SKA_Novel"
         mc:Ignorable="d"
         Title="SKA Novel" Height="450" Width="800" ResizeMode="NoResize" WindowState="Maximized" WindowStyle="None"
-        Background="#000" Keyboard.KeyUp="Window_KeyDown">
+        Background="Black" Keyboard.KeyUp="Window_KeyDown">
+    <Window.Effect>
+        <BlurEffect KernelType="Gaussian" Radius="3"/>
+    </Window.Effect>
 
 
 
-    <Grid>
+    <Grid RenderTransformOrigin="0.5,0.5">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="0.55*"/>
@@ -82,7 +85,7 @@
 
         <Grid x:Name="gridMainMenu" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="3">
 
-            <Image Source="/коридор 2.png" Stretch="Fill">
+            <Image Source="/коридор 2.png" Stretch="Fill" OpacityMask="Black">
                 <Image.Effect>
                     <BlurEffect Radius="10" KernelType="Gaussian"/>
                 </Image.Effect>
@@ -113,9 +116,19 @@
 
         </Grid>
 
-        <DockPanel x:Name="DarkScreen" Background="#000" Grid.ColumnSpan="2" Grid.RowSpan="2"
-                   Opacity="0" Visibility="Collapsed"/>
 
+
+        <DockPanel x:Name="DarkScreen" Background="#000" Grid.ColumnSpan="2" Grid.RowSpan="2"
+                   Opacity="0" Visibility="Collapsed" />
+
+        <DockPanel x:Name="EffectScreen" Grid.ColumnSpan="2" Visibility="Visible" IsHitTestVisible="False" Opacity="0.4" Grid.RowSpan="3">
+            <DockPanel.Background>
+                <ImageBrush/>
+            </DockPanel.Background>
+        </DockPanel>
+
+        <MediaElement x:Name="FilmGrain" Source="C:\CODING\SK Novel\Resources\4K Dirt vintage film dust hair damage 35mm footage FREE noise overlay after effe.mp4" Grid.ColumnSpan="2" Grid.RowSpan="3"
+                   Opacity="0.5" IsHitTestVisible="False" Volume="0" OpacityMask="Black" Visibility="Collapsed"/>
 
 
         <Border Grid.ColumnSpan="2" Grid.RowSpan="2" Width="802">

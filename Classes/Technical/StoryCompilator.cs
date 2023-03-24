@@ -134,6 +134,7 @@ namespace SKA_Novel.Classes.Technical
             MediaHelper.SetVideo(GetArguments(codeString));
         }
 
+
         public static void Cutscene(string codeString)
         {
             MediaHelper.Cutscene(GetArguments(codeString));
@@ -366,7 +367,6 @@ namespace SKA_Novel.Classes.Technical
             ControlsManager.MainTextPanel.Visibility = System.Windows.Visibility.Hidden;
             MainWindow.AllowKeys = false;
         }
-
         private static void AddOptions(string[] optionsFiles)
         {
             for (int i = 0; i < optionsFiles.Count(); i++)

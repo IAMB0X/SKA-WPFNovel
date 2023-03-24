@@ -10,6 +10,7 @@ namespace SKA_Novel.Classes.Technical
 {
     internal class ControlsManager
     {
+        public static DockPanel EffectScreen { get; set; }
         public static MainWindow AppMainWindow { get; set; }
         public static MediaElement BackgroundVideo { get; set; }
         public static MediaElement Cutscene { get; set; }

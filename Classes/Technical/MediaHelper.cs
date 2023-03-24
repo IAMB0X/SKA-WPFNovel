@@ -1,12 +1,18 @@
-﻿using System;
+﻿using SKA_Novel.Classes.Game;
+using SKA_Novel.Properties;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 namespace SKA_Novel.Classes.Technical
 {
@@ -25,6 +31,11 @@ namespace SKA_Novel.Classes.Technical
         public static string CurrentMusic;
         public static string CurrentEnviroment;
         public static string CurrentBackground;
+
+        public static int frameIndex = 0;
+        public static List<string> EffectFrames;
+
+        public static DispatcherTimer EffectTimer = new DispatcherTimer();
 
 
         public static MediaPlayer MainMusicPlayer = new MediaPlayer();
@@ -80,6 +91,36 @@ namespace SKA_Novel.Classes.Technical
             ControlsManager.BackgroundVideo.Play();
         }
 
+        public static void SetEffectAnimation()
+        {
+            int speed = 35;
+            byte framesCount = 34;
+            byte spriteNumber = 0;
+
+            List<string> sprites = new List<string>();      //Лист спрайтов
+
+            while (framesCount != 0)
+            {
+                framesCount--;                                                                           //Вычитаем из общего кол-ва кадров -1
+                spriteNumber++;                                                                          //Прибавляем к номеру спрайта 1
+                string currentLine = "Filmgrain" + "_" + Convert.ToString(spriteNumber);
+                sprites.Add(currentLine);                                                            //То добавляем имя спрайта
+            }
+            EffectFrames = sprites;                                             //Получает спрайты для анимации
+            EffectTimer.Interval = TimeSpan.FromMilliseconds(speed);            //Задает интервал времени между спрайтами
+            EffectTimer.Tick += UpdateFrame;                                    //По истечению времени таймера обновляет спрайт 
+            EffectTimer.Start();                                                //Стартует таймер анимации
+        }
+
+        public static void UpdateFrame(object sender, EventArgs e)
+        {
+            ControlsManager.EffectScreen.Background = new ImageBrush(new BitmapImage(new Uri(BaseDirectory + "Effect\\" + "Filmgrain\\" + EffectFrames[frameIndex] + ".png")));
+
+            if (frameIndex + 1 < EffectFrames.Count)     
+                frameIndex++;                                
+            else
+                frameIndex = 0;                             
+        }
         public static void Cutscene (string videoName)
         {
             FileModule videoFile = new FileModule();

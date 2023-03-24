@@ -30,6 +30,7 @@ namespace SKA_Novel
         {
             InitializeComponent();
 
+            ControlsManager.EffectScreen = EffectScreen;
             ControlsManager.AppMainWindow = this;
             ControlsManager.BackgroundVideo = BackgroundVideo;
             ControlsManager.Cutscene = Cutscene;
@@ -42,6 +43,7 @@ namespace SKA_Novel
             ControlsManager.HeroPositions[0] = HeroPosition1;
             ControlsManager.HeroPositions[1] = HeroPosition2;
             ControlsManager.HeroPositions[2] = HeroPosition3;
+            MediaHelper.SetEffectAnimation();
         }
 
         private void brdMainText_MouseDown(object sender, MouseButtonEventArgs e)

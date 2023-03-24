@@ -59,8 +59,6 @@ namespace SKA_Novel.Classes.Game
                     animationIndex = 0;                              //Задает индекс кадра = 0, что по сути возвращает к первому кадру
                 else
                     StopAnimation();
-
-
             
         }
 
