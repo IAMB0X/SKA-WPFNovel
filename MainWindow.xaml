@@ -85,7 +85,7 @@
 
         <Grid x:Name="gridMainMenu" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="3">
 
-            <Image Source="/коридор 2.png" Stretch="Fill" OpacityMask="Black">
+            <Image Source="Resources\коридор 2.png" Stretch="Fill" OpacityMask="Black">
                 <Image.Effect>
                     <BlurEffect Radius="10" KernelType="Gaussian"/>
                 </Image.Effect>
