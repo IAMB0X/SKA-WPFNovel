@@ -10,7 +10,7 @@
 
     <Window.Effect>
 
-        <BlurEffect KernelType="Gaussian" Radius="3" />
+        <BlurEffect KernelType="Gaussian" Radius="2" />
     </Window.Effect>
 
 
@@ -67,7 +67,7 @@
 
                 <DockPanel MouseDown="brdMainText_MouseDown" Margin="15">
                     <TextBlock x:Name="txtCurrentCharacter" FontSize="36" FontWeight="Black"
-                               TextAlignment="Left" DockPanel.Dock="Left" VerticalAlignment="Center" Margin="15,0,0,20"/>
+                               TextAlignment="Left" DockPanel.Dock="Left" VerticalAlignment="Center" Margin="25,0,0,20"/>
                     <TextBlock x:Name="txtMainText" TextAlignment="Left" Margin="120,0,0,0" FontSize="30" VerticalAlignment="Center"/>
                 </DockPanel>
 
