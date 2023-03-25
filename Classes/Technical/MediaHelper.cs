@@ -93,7 +93,7 @@ namespace SKA_Novel.Classes.Technical
 
         public static void SetEffectAnimation()
         {
-            int speed = 35;
+            int speed = 10;
             byte framesCount = 34;
             byte spriteNumber = 0;
 

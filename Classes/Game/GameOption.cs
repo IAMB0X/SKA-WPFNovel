@@ -47,7 +47,8 @@ namespace SKA_Novel.Classes.Game
             Technical.ControlsManager.KarmaLevel += KarmaWeight;
             Technical.StoryCompilator.GoNextFile(TargetFile);
             Technical.ControlsManager.OptionPanel.Children.Clear();
-            Technical.ControlsManager.MainTextPanel.Visibility = Visibility.Visible;
+            Technical.ControlsManager.MainText.Visibility = Visibility.Visible;
+            Technical.ControlsManager.SpeakerName.Visibility = Visibility.Visible;
             Technical.StoryCompilator.GoNextLine();
             MainWindow.AllowKeys = true;
         }

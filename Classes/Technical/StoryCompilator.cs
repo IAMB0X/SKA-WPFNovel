@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -320,7 +321,7 @@ namespace SKA_Novel.Classes.Technical
             }
             else if (shortName == "I")
             {
-                ControlsManager.SpeakerName.Text = "Я:";
+                ControlsManager.SpeakerName.Text = "Тэй:";
                 ControlsManager.SpeakerName.Foreground = Brushes.LightBlue;
                 foreach (DockPanel heroPosition in ControlsManager.HeroPositions)
                     if (heroPosition.Children.Count > 0)
@@ -364,7 +365,8 @@ namespace SKA_Novel.Classes.Technical
         {
             string[] options = GetArguments(codeString).Split(',');
             AddOptions(options);
-            ControlsManager.MainTextPanel.Visibility = System.Windows.Visibility.Hidden;
+            ControlsManager.MainText.Visibility = System.Windows.Visibility.Hidden;
+            Technical.ControlsManager.SpeakerName.Visibility = Visibility.Hidden;
             MainWindow.AllowKeys = false;
         }
         private static void AddOptions(string[] optionsFiles)
