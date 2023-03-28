@@ -83,10 +83,10 @@ namespace SKA_Novel.Classes.Game
 
         private void UpdateImageSource(string imageName)
         {
-            if (CurrentPosition == 0)
-                FlowDirection = System.Windows.FlowDirection.RightToLeft;
-            else 
-                FlowDirection = System.Windows.FlowDirection.LeftToRight;
+            //if (CurrentPosition == 0)
+            //    FlowDirection = System.Windows.FlowDirection.RightToLeft;
+            //else 
+            //    FlowDirection = System.Windows.FlowDirection.LeftToRight;
 
             Source = new BitmapImage(new Uri(Technical.MediaHelper.ImagesDirectory + "\\" + Character.FullName.ToUpper() + "\\" + imageName + ".png"));
         }
