@@ -69,7 +69,7 @@
                 <DockPanel MouseDown="brdMainText_MouseDown" Margin="10">
                     <TextBlock x:Name="txtCurrentCharacter" FontSize="36" FontWeight="Black"
                                TextAlignment="Left" DockPanel.Dock="Left" VerticalAlignment="Center" Margin="25,0,0,20" FontFamily="ГОСТ тип А"/>
-                    <Border x:Name="Stripe" Margin="25,15,0,15">
+                    <Border x:Name="Stripe" Margin="35,10,0,10">
                         <Image Source="/Resources/Stripe.png" Opacity="0.8">
                         </Image>
                     </Border>
