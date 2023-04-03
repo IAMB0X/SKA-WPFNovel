@@ -10,7 +10,7 @@
 
     <Window.Effect>
 
-        <BlurEffect KernelType="Gaussian" Radius="2.5" />
+        <BlurEffect KernelType="Gaussian" Radius="2.7" />
     </Window.Effect>
 
 
@@ -69,11 +69,11 @@
                 <DockPanel MouseDown="brdMainText_MouseDown" Margin="10">
                     <TextBlock x:Name="txtCurrentCharacter" FontSize="36" FontWeight="Black"
                                TextAlignment="Left" DockPanel.Dock="Left" VerticalAlignment="Center" Margin="25,0,0,20" FontFamily="ГОСТ тип А"/>
-                    <Border x:Name="Stripe" Margin="35,10,0,10">
+                    <Border x:Name="Stripe" Margin="35,0,0,0">
                         <Image Source="/Resources/Stripe.png" Opacity="0.8">
                         </Image>
                     </Border>
-                    <TextBlock x:Name="txtMainText" TextAlignment="Left" Margin="120,0,0,0" FontSize="30" VerticalAlignment="Center" FontFamily="ГОСТ тип А"/>
+                    <TextBlock x:Name="txtMainText" TextAlignment="Left" Margin="35,30,0,0" FontSize="30" VerticalAlignment="Top" FontFamily="ГОСТ тип А"/>
                 </DockPanel>
 
             </DockPanel>

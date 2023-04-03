@@ -77,7 +77,7 @@ namespace SKA_Novel.Classes.Technical
             {"SetHeroAnimation", SetHeroAnimation},     // characterName, position, animationSpeedMilliseconds { Sprite1, Sprite2, ... }
             {"StopAnimation", StopAnimation},           // characterName, position
             {"SetVideo", SetVideo},                     // videoName
-            {"Cutscene", Cutscene},                     // videoName
+            {"SetCutscene", SetCutscene},                     // videoName
         };
 
 
@@ -136,9 +136,9 @@ namespace SKA_Novel.Classes.Technical
         }
 
 
-        public static void Cutscene(string codeString)
+        public static void SetCutscene(string codeString)
         {
-            MediaHelper.Cutscene(GetArguments(codeString));
+            MediaHelper.SetCutscene(GetArguments(codeString));
         }
 
         public static void AnimationBackground (string background)
