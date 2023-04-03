@@ -144,14 +144,14 @@ namespace SKA_Novel
             MediaHelper.MainEnvPlayer.Volume = volumeLevel;
         }
 
-        private void btStartGame_MouseEnter(object sender, MouseEventArgs e)
+        private void MenuItem_MouseEnter(object sender, MouseEventArgs e)
         {
-            Foreground = Brushes.Yellow;
+            (sender as TextBlock).Foreground = Brushes.Yellow;
         }
 
-        private void btStartGame_MouseLeave(object sender, MouseEventArgs e)
+        private void MenuItem_MouseLeave(object sender, MouseEventArgs e)
         {
-            Foreground = Brushes.White;
+            (sender as TextBlock).Foreground = Brushes.White;
         }
     }
 }
