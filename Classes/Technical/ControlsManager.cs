@@ -15,7 +15,7 @@ namespace SKA_Novel.Classes.Technical
         public static MediaElement BackgroundVideo { get; set; }
         public static MediaElement Cutscene { get; set; }
         public static DockPanel DarkScreen { get; set; }
-        public static Grid MainMenu { get; set; }
+        public static Frame MainMenuFrame { get; set; }
         public static StackPanel OptionPanel { get; set; }
         public static Border MainTextPanel { get; set; }
         public static TextBlock MainText { get; set; }
