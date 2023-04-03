@@ -10,7 +10,7 @@
 
     <Window.Effect>
 
-        <BlurEffect KernelType="Gaussian" Radius="2" />
+        <BlurEffect KernelType="Gaussian" Radius="2.5" />
     </Window.Effect>
 
 
@@ -37,10 +37,10 @@
         <DockPanel x:Name="HeroPosition3" Grid.Column="1"
                 MouseDown="brdMainText_MouseDown" Grid.Row="1" Grid.RowSpan="2"/>
 
-        <Border x:Name="btClose" BorderBrush="DarkRed" BorderThickness="2" Background="#fff" Grid.Column="2"
+        <Border x:Name="btClose" Grid.Column="2"
                 VerticalAlignment="Top" HorizontalAlignment="Right" CornerRadius="50" Margin="20"
                 Height="65" Width="65" MouseDown="btClose_MouseDown">
-            <Image Source="/bin/Debug/Resources/Images/cancel.png"/>
+            <Image Source="/cancel.png"/>
         </Border>
 
         <Border x:Name="brdUpLine" Background="#000"
@@ -52,23 +52,28 @@
             <DockPanel>
 
                 <StackPanel DockPanel.Dock="Right">
-
-                    <Border x:Name="btVolume" BorderThickness="2"
+                    <Slider x:Name="Volume" Orientation="Vertical" Height="100" Width="30" Minimum="0.001" Maximum="0.05" Value="0.02" Foreground="Black" ValueChanged="Volume_ValueChanged" SmallChange="0.01" Background="Black" BorderThickness="0.1" LargeChange="0.01" TickFrequency="0" Visibility="Collapsed"/>
+                    <Border x:Name="btVolume"
                             CornerRadius="40" Margin="5" Height="40" Width="40" MouseDown="btVolume_MouseDown">
-                        <Image x:Name="imgVolume" Source="/bin/Debug/Resources/Images/volume.png"/>
+                        <Image x:Name="imgVolume" Source="/volume.png"/>
                     </Border>
+                    
 
-                    <Border x:Name="btSave" BorderThickness="2"
+                    <Border x:Name="btSave" 
                             CornerRadius="10" Margin="5" Height="40" Width="40" MouseDown="btSave_MouseDown">
-                        <Image Source="/bin/Debug/Resources/Images/floppy-disk.png"/>
+                        <Image Source="/floppy-disk.png"/>
                     </Border>
 
                 </StackPanel>
 
-                <DockPanel MouseDown="brdMainText_MouseDown" Margin="15">
+                <DockPanel MouseDown="brdMainText_MouseDown" Margin="10">
                     <TextBlock x:Name="txtCurrentCharacter" FontSize="36" FontWeight="Black"
-                               TextAlignment="Left" DockPanel.Dock="Left" VerticalAlignment="Center" Margin="25,0,0,20"/>
-                    <TextBlock x:Name="txtMainText" TextAlignment="Left" Margin="120,0,0,0" FontSize="30" VerticalAlignment="Center"/>
+                               TextAlignment="Left" DockPanel.Dock="Left" VerticalAlignment="Center" Margin="25,0,0,20" FontFamily="ГОСТ тип А"/>
+                    <Border x:Name="Stripe" Margin="25,15,0,15">
+                        <Image Source="/Resources/Stripe.png" Opacity="0.8">
+                        </Image>
+                    </Border>
+                    <TextBlock x:Name="txtMainText" TextAlignment="Left" Margin="120,0,0,0" FontSize="30" VerticalAlignment="Center" FontFamily="ГОСТ тип А"/>
                 </DockPanel>
 
             </DockPanel>
@@ -95,8 +100,6 @@
                     <BlurEffect Radius="10" KernelType="Gaussian"/>
                 </Image.Effect>
             </Image>
-
-
 
             <Border CornerRadius="40"
                         Opacity="0.85" HorizontalAlignment="Right" VerticalAlignment="Center">

@@ -25,6 +25,7 @@ namespace SKA_Novel
     /// </summary>
     public partial class MainWindow : Window
     {
+        double volumeLevel;
         public static bool AllowKeys { get; set; } = false;
         public MainWindow()
         {
@@ -44,6 +45,8 @@ namespace SKA_Novel
             ControlsManager.HeroPositions[1] = HeroPosition2;
             ControlsManager.HeroPositions[2] = HeroPosition3;
             MediaHelper.SetEffectAnimation();
+            MediaHelper.SetGameMusic("808steps");
+            MediaHelper.MainMusicPlayer.Volume = 0.03;
         }
 
         private void brdMainText_MouseDown(object sender, MouseButtonEventArgs e)
@@ -53,20 +56,31 @@ namespace SKA_Novel
 
         private void btVolume_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            if (Volume.Visibility == Visibility.Visible)
+            Volume.Visibility = Visibility.Collapsed;
+            else
+            Volume.Visibility = Visibility.Visible;
+            /*
             if (MediaHelper.MainMusicPlayer.Volume > 0)
             {
                 MediaHelper.MainMusicPlayer.Volume = 0;
+                MediaHelper.MainSoundPlayer.Volume = 0;
+                MediaHelper.MainEnvPlayer.Volume = 0;
                 imgVolume.Source = new BitmapImage(new Uri(MediaHelper.ImagesDirectory + "mute.png"));
             }
             else
             {
-                MediaHelper.MainMusicPlayer.Volume = 0.5;
+                MediaHelper.MainMusicPlayer.Volume = 0.05;
+                MediaHelper.MainSoundPlayer.Volume = 0.05;
+                MediaHelper.MainEnvPlayer.Volume = 0.05;
                 imgVolume.Source = new BitmapImage(new Uri(MediaHelper.ImagesDirectory + "volume.png"));
             }
+            */
         }
 
         private void btClose_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            Application.Current.Shutdown();
             Close();
         }
 
@@ -97,11 +111,17 @@ namespace SKA_Novel
                 {
                     gridMainMenu.Visibility = Visibility.Visible;
                     AllowKeys = false;
+                    MediaHelper.MainMusicPlayer.Volume = 0.004;
+                    MediaHelper.MainSoundPlayer.Volume = 0.004;
+                    MediaHelper.MainEnvPlayer.Volume = 0.004;
                 }
                 else
                 {
                     gridMainMenu.Visibility = Visibility.Collapsed;
                     AllowKeys = true;
+                    MediaHelper.MainMusicPlayer.Volume = volumeLevel;
+                    MediaHelper.MainSoundPlayer.Volume = volumeLevel;
+                    MediaHelper.MainEnvPlayer.Volume = volumeLevel;
                 }
             }
             else if (AllowKeys)
@@ -109,6 +129,19 @@ namespace SKA_Novel
                 if (e.Key == Key.Space || e.Key == Key.Enter)
                     StoryCompilator.GoNextLine();
             }
+        }
+
+        private void Volume_DragEnter(object sender, DragEventArgs e)
+        {
+
+        }
+
+        private void Volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            volumeLevel = Volume.Value;
+            MediaHelper.MainMusicPlayer.Volume = volumeLevel;
+            MediaHelper.MainSoundPlayer.Volume = volumeLevel;
+            MediaHelper.MainEnvPlayer.Volume = volumeLevel;
         }
     }
 }
