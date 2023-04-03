@@ -53,12 +53,12 @@
 
                 <StackPanel DockPanel.Dock="Right">
 
-                    <Border x:Name="btVolume" BorderBrush="DarkRed" BorderThickness="2" Background="#fff"
+                    <Border x:Name="btVolume" BorderThickness="2"
                             CornerRadius="40" Margin="5" Height="40" Width="40" MouseDown="btVolume_MouseDown">
                         <Image x:Name="imgVolume" Source="/bin/Debug/Resources/Images/volume.png"/>
                     </Border>
 
-                    <Border x:Name="btSave" BorderBrush="DarkRed" BorderThickness="2" Background="#fff"
+                    <Border x:Name="btSave" BorderThickness="2"
                             CornerRadius="10" Margin="5" Height="40" Width="40" MouseDown="btSave_MouseDown">
                         <Image Source="/bin/Debug/Resources/Images/floppy-disk.png"/>
                     </Border>
@@ -132,9 +132,6 @@
                 <ImageBrush/>
             </DockPanel.Background>
         </DockPanel>
-
-        <MediaElement x:Name="FilmGrain" Source="C:\CODING\SK Novel\Resources\4K Dirt vintage film dust hair damage 35mm footage FREE noise overlay after effe.mp4" Grid.ColumnSpan="2" Grid.RowSpan="3"
-                   Opacity="0.5" IsHitTestVisible="False" Volume="0" OpacityMask="Black" Visibility="Collapsed"/>
 
 
         <Border Grid.ColumnSpan="2" Grid.RowSpan="2" Width="802">

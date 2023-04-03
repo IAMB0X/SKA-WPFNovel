@@ -127,18 +127,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="bin\Debug\Resources\Images\volume.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="bin\Debug\Resources\Images\mute.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="bin\Debug\Resources\Images\cancel.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="bin\Debug\Resources\Images\floppy-disk.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="коридор 2.png" />
   </ItemGroup>
   <ItemGroup>
@@ -155,6 +143,21 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="floppy-disk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="volume.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bin\Debug\Resources\Images\cancel.png" />
+    <Resource Include="bin\Debug\Resources\Images\floppy-disk.png" />
+    <Resource Include="bin\Debug\Resources\Images\mute.png" />
+    <Resource Include="bin\Debug\Resources\Images\volume.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

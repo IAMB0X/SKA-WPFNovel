@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:SKA_Novel.ModalWindows" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"  ResizeMode="NoResize"
         Title="Сохранение" Height="200" Width="700" MouseDown="Window_MouseDown">
-    <Border Background="#FFF" CornerRadius="25" BorderThickness="5" BorderBrush="#090">
+    <Border Background="#FF0F0F0F" CornerRadius="10" BorderThickness="2" BorderBrush="White">
 
         <DockPanel>
 
             <Image Source="/bin/Debug/Resources/Images/floppy-disk.png" DockPanel.Dock="Left" Width="150"/>
-            <TextBlock Text="Сохранение&#x0a;выполненно успешно!" Foreground="#060" FontWeight="Bold"
+            <TextBlock Text="Сохранение&#x0a;выполненно успешно!" Foreground="White" FontWeight="Bold"
                        VerticalAlignment="Center"/>
 
         </DockPanel>
