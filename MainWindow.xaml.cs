@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -147,11 +148,20 @@ namespace SKA_Novel
         private void MenuItem_MouseEnter(object sender, MouseEventArgs e)
         {
             (sender as TextBlock).Foreground = Brushes.Yellow;
+            (sender as TextBlock).Effect = new DropShadowEffect
+            {
+                Color = new Color { R = 255, G = 0, B = 0 },
+                Direction = 320,
+                ShadowDepth = 5,
+                Opacity = 1,
+                BlurRadius = 10
+            };
         }
 
         private void MenuItem_MouseLeave(object sender, MouseEventArgs e)
         {
             (sender as TextBlock).Foreground = Brushes.White;
+            (sender as TextBlock).Effect = null;
         }
     }
 }
