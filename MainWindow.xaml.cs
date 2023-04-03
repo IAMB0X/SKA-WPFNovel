@@ -143,5 +143,15 @@ namespace SKA_Novel
             MediaHelper.MainSoundPlayer.Volume = volumeLevel;
             MediaHelper.MainEnvPlayer.Volume = volumeLevel;
         }
+
+        private void btStartGame_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Foreground = Brushes.Yellow;
+        }
+
+        private void btStartGame_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Foreground = Brushes.White;
+        }
     }
 }

@@ -108,7 +108,7 @@
 
                     <TextBlock x:Name="appTitle" Text=" Директива №1 " Margin="35" FontSize="102" FontFamily="Bahnschrift" FontStyle="Italic" TextWrapping="Wrap" TextAlignment="Center" FontWeight="Bold"/>
 
-                    <TextBlock x:Name="btStartGame" Text="НОВАЯ ИГРА" Margin="20" FontSize="54" 
+                    <TextBlock x:Name="btStartGame" Text="НОВАЯ ИГРА" Margin="20" FontSize="54"  MouseEnter="btStartGame_MouseEnter" MouseLeave="btStartGame_MouseLeave"
                            FontWeight="ExtraBlack" MouseDown="btStartGame_MouseDown" HorizontalAlignment="Right" FontFamily="Segoe UI"/>
 
                     <TextBlock x:Name="btLoadGame" Text="ЗАГРУЗКА" Margin="20" FontSize="54"
