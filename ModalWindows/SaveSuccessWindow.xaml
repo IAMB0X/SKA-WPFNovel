@@ -10,7 +10,7 @@
 
         <DockPanel>
 
-            <Image Source="/bin/Debug/Resources/Images/floppy-disk.png" DockPanel.Dock="Left" Width="150"/>
+            <Image Source="/bin/Debug/Resources/Images/floppy-disk.png" DockPanel.Dock="Left" Width="150" Margin="10"/>
             <TextBlock Text="Сохранение&#x0a;выполненно успешно!" Foreground="White" FontWeight="Bold"
                        VerticalAlignment="Center"/>
 

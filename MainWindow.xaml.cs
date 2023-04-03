@@ -36,7 +36,7 @@ namespace SKA_Novel
             ControlsManager.AppMainWindow = this;
             ControlsManager.BackgroundVideo = BackgroundVideo;
             ControlsManager.Cutscene = Cutscene;
-            ControlsManager.MainMenu = gridMainMenu;
+            ControlsManager.MainMenuFrame = frameMainMenu;
             ControlsManager.DarkScreen = DarkScreen;
             ControlsManager.OptionPanel = stckPnlOptions;
             ControlsManager.MainTextPanel = brdMainText;
@@ -45,9 +45,12 @@ namespace SKA_Novel
             ControlsManager.HeroPositions[0] = HeroPosition1;
             ControlsManager.HeroPositions[1] = HeroPosition2;
             ControlsManager.HeroPositions[2] = HeroPosition3;
+
             MediaHelper.SetEffectAnimation();
             MediaHelper.SetGameMusic("808steps");
             MediaHelper.MainMusicPlayer.Volume = 0.03;
+
+            frameMainMenu.Navigate(new Pages.MainMenuPage());
         }
 
         private void brdMainText_MouseDown(object sender, MouseButtonEventArgs e)
@@ -79,29 +82,10 @@ namespace SKA_Novel
             */
         }
 
-        private void btClose_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Application.Current.Shutdown();
-            Close();
-        }
-
         private void btSave_MouseDown(object sender, MouseButtonEventArgs e)
         {
             MediaHelper.SaveGame();
             new ModalWindows.SaveSuccessWindow().ShowDialog();
-        }
-
-        private void btLoadGame_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            MediaHelper.LoadGame();
-            ControlsManager.MainMenu.Visibility = Visibility.Collapsed;
-        }
-
-        private void btStartGame_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            ControlsManager.MainMenu.Visibility = Visibility.Collapsed;
-            StoryCompilator.GoNextFile("Startfile"); // Стартовый файл истории, сейчас: тестовый
-            StoryCompilator.GoNextLine();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -110,7 +94,7 @@ namespace SKA_Novel
             {
                 if (AllowKeys)
                 {
-                    gridMainMenu.Visibility = Visibility.Visible;
+                    frameMainMenu.Visibility = Visibility.Visible;
                     AllowKeys = false;
                     MediaHelper.MainMusicPlayer.Volume = 0.004;
                     MediaHelper.MainSoundPlayer.Volume = 0.004;
@@ -118,7 +102,7 @@ namespace SKA_Novel
                 }
                 else
                 {
-                    gridMainMenu.Visibility = Visibility.Collapsed;
+                    frameMainMenu.Visibility = Visibility.Collapsed;
                     AllowKeys = true;
                     MediaHelper.MainMusicPlayer.Volume = volumeLevel;
                     MediaHelper.MainSoundPlayer.Volume = volumeLevel;
@@ -145,23 +129,9 @@ namespace SKA_Novel
             MediaHelper.MainEnvPlayer.Volume = volumeLevel;
         }
 
-        private void MenuItem_MouseEnter(object sender, MouseEventArgs e)
+        private void btClose_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            (sender as TextBlock).Foreground = Brushes.White;
-            (sender as TextBlock).Effect = new DropShadowEffect
-            {
-                Color = new Color { R = 255, G = 255, B = 255 },
-                Direction = 320,
-                ShadowDepth = 5,
-                Opacity = 0.5,
-                BlurRadius = 10
-            };
-        }
-
-        private void MenuItem_MouseLeave(object sender, MouseEventArgs e)
-        {
-            (sender as TextBlock).Foreground = Brushes.White;
-            (sender as TextBlock).Effect = null;
+            Application.Current.Shutdown();
         }
     }
 }
