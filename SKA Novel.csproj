@@ -133,7 +133,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Resource Include="bin\Fonts\ГОСТ тип А.ttf" />
+    <Resource Include="bin\Debug\Resources\Fonts\ГОСТ тип А.ttf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
