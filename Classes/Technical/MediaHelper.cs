@@ -59,8 +59,8 @@ namespace SKA_Novel.Classes.Technical
         public static void SetBackground(string backgroundName)
         {
             FileModule backgroundFile = new FileModule();
-            backgroundFile.FileCheck(backgroundName, BackgroundDirectory);
-            if (backgroundFile.FileCheck(backgroundName, BackgroundDirectory))
+            backgroundFile.CheckFile(backgroundName, BackgroundDirectory);
+            if (backgroundFile.CheckFile(backgroundName, BackgroundDirectory))
             {
                 ControlsManager.AppMainWindow.Background = new ImageBrush()
                 {
@@ -75,8 +75,8 @@ namespace SKA_Novel.Classes.Technical
         public static void SetVideo(string videoName)
         {
             FileModule videoFile = new FileModule();
-            videoFile.FileCheck(videoName, BackgroundDirectory);
-            if (videoFile.FileCheck(videoName, BackgroundDirectory))
+            videoFile.CheckFile(videoName, BackgroundDirectory);
+            if (videoFile.CheckFile(videoName, BackgroundDirectory))
             {
                 ControlsManager.BackgroundVideo.Visibility = System.Windows.Visibility.Visible;
                 ControlsManager.BackgroundVideo.Source = new Uri (videoFile.checkedFile);
@@ -124,8 +124,8 @@ namespace SKA_Novel.Classes.Technical
         public static void Cutscene (string videoName)
         {
             FileModule videoFile = new FileModule();
-            videoFile.FileCheck(videoName, CutsceneDirectory);
-            if (videoFile.FileCheck(videoName, CutsceneDirectory))
+            videoFile.CheckFile(videoName, CutsceneDirectory);
+            if (videoFile.CheckFile(videoName, CutsceneDirectory))
             {
                 MainWindow.AllowKeys = false;
                 MainMusicPlayer.Stop();
@@ -151,8 +151,8 @@ namespace SKA_Novel.Classes.Technical
             CurrentEnviroment = envName;
             MainEnvPlayer.Stop();                                   //Завершает
             FileModule envFile = new FileModule();
-            envFile.FileCheck(envName, EnvDirectory);
-            if (envFile.FileCheck(envName, EnvDirectory))
+            envFile.CheckFile(envName, EnvDirectory);
+            if (envFile.CheckFile(envName, EnvDirectory))
             {
                 MainEnvPlayer.Open(new Uri(envFile.checkedFile));    //Открывает из своей директории название файла
 
@@ -167,41 +167,47 @@ namespace SKA_Novel.Classes.Technical
             MainEnvPlayer.Position = TimeSpan.Zero;                 //Перематывает на начало 0:00
             MainEnvPlayer.Play();                                   //Воспроизводит
         }
+
         public static void SetSound(string soundName)               // Звуки - не зациклены
                                                                     //Работает также
         {
             MainSoundPlayer.Stop();
             FileModule soundFile = new FileModule();
-            soundFile.FileCheck(soundName, SoundDirectory);
-            if (soundFile.FileCheck(soundName, SoundDirectory))
+            soundFile.CheckFile(soundName, SoundDirectory);
+            if (soundFile.CheckFile(soundName, SoundDirectory))
             {
                 MainSoundPlayer.Open(new Uri(soundFile.checkedFile));
                 MainSoundPlayer.Play();
             }
         }
+
         public static void SetGameMusic(string musicName)           // Музыка - зациклена
         {                                                           //Работает также
             CurrentMusic = musicName;
             MainMusicPlayer.Stop();
             FileModule musicFile = new FileModule();
-            if (musicFile.FileCheck(musicName, MusicDirectory))
+            if (musicFile.CheckFile(musicName, MusicDirectory))
             {
                 MainMusicPlayer.Open(new Uri(musicFile.checkedFile));
                 MainMusicPlayer.MediaEnded += MusicFinish;
                 MainMusicPlayer.Play();
             }
         }
+
         private static void MusicFinish(object sender, EventArgs e)
         {
             MainMusicPlayer.Position = TimeSpan.Zero;
             MainMusicPlayer.Play();
         }
+
         public static void SaveGame()                                                           // Сохранение
         {
             StreamWriter writer = new StreamWriter(FilesDirectory + "\\SystemFiles\\Save.txt");
             writer.WriteLine(CurrentFile);                                                      //Записывает текущего название файла
             writer.WriteLine(StoryCompilator.LineOfStory);                                      //Записывает текущий номер строки
             writer.WriteLine(ControlsManager.KarmaLevel);                                       //Записывает текущую карму
+            writer.WriteLine(CurrentBackground);                                                //Записывает текущий фон
+            writer.WriteLine(DateTime.Now.Date.ToShortDateString() + "\n" + DateTime.Now.TimeOfDay.ToString());
             writer.Close();
         }
 

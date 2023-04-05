@@ -63,5 +63,15 @@ namespace SKA_Novel.Pages
             StoryCompilator.GoNextFile("Startfile"); // Стартовый файл истории, сейчас: тестовый
             StoryCompilator.GoNextLine();
         }
+
+        private void btSaveGame_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void btSettings_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

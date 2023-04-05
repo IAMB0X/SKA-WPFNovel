@@ -96,9 +96,9 @@ namespace SKA_Novel
                 {
                     frameMainMenu.Visibility = Visibility.Visible;
                     AllowKeys = false;
-                    MediaHelper.MainMusicPlayer.Volume = 0.004;
-                    MediaHelper.MainSoundPlayer.Volume = 0.004;
-                    MediaHelper.MainEnvPlayer.Volume = 0.004;
+                    MediaHelper.MainMusicPlayer.Volume = 0;
+                    MediaHelper.MainSoundPlayer.Volume = 0;
+                    MediaHelper.MainEnvPlayer.Volume = 0;
                 }
                 else
                 {
@@ -114,11 +114,6 @@ namespace SKA_Novel
                 if (e.Key == Key.Space || e.Key == Key.Enter)
                     StoryCompilator.GoNextLine();
             }
-        }
-
-        private void Volume_DragEnter(object sender, DragEventArgs e)
-        {
-
         }
 
         private void Volume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
