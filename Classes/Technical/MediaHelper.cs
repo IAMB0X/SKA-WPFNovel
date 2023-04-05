@@ -30,7 +30,7 @@ namespace SKA_Novel.Classes.Technical
         public static string CurrentFile;
         public static string CurrentMusic;
         public static string CurrentEnviroment;
-        public static string CurrentBackground;
+        public static string CurrentBackground { get; set; }
 
         public static int frameIndex = 0;
         public static List<string> EffectFrames;
@@ -68,7 +68,7 @@ namespace SKA_Novel.Classes.Technical
                 };
                 ControlsManager.BackgroundVideo.Stop();
                 ControlsManager.BackgroundVideo.Visibility = System.Windows.Visibility.Hidden;
-                StoryCompilator.AnimationBackground(backgroundFile.checkedFile);
+                StoryCompilator.DarkScreen(backgroundName);
             }    
         }
 
@@ -200,20 +200,27 @@ namespace SKA_Novel.Classes.Technical
             MainMusicPlayer.Play();
         }
 
-        public static void SaveGame()                                                           // Сохранение
+        public static void SaveGame(bool isQuickSaving = true)                                                           // Сохранение
         {
-            StreamWriter writer = new StreamWriter(FilesDirectory + "\\SystemFiles\\Save.txt");
+            StreamWriter writer;
+            string time = DateTime.Now.Date.ToShortDateString() + " " + DateTime.Now.ToString("HH:mm");
+
+            if (isQuickSaving)
+                writer = new StreamWriter(FilesDirectory + "\\SystemFiles\\Saves\\QuickSave.txt");
+            else
+                writer = new StreamWriter(FilesDirectory + "\\SystemFiles\\Saves\\Save" + "_" + time + ".txt");
+
             writer.WriteLine(CurrentFile);                                                      //Записывает текущего название файла
             writer.WriteLine(StoryCompilator.LineOfStory);                                      //Записывает текущий номер строки
             writer.WriteLine(ControlsManager.KarmaLevel);                                       //Записывает текущую карму
             writer.WriteLine(CurrentBackground);                                                //Записывает текущий фон
-            writer.WriteLine(DateTime.Now.Date.ToShortDateString() + "\n" + DateTime.Now.TimeOfDay.ToString());
+            writer.WriteLine(time);
             writer.Close();
         }
 
-        public static void LoadGame()
+        public static void LoadGame(string saveName = "QuickSave")
         {
-            StreamReader reader = new StreamReader(FilesDirectory + "\\SystemFiles\\Save.txt");
+            StreamReader reader = new StreamReader(FilesDirectory + "\\SystemFiles\\Saves\\" + saveName + ".txt");
             StoryCompilator.GoNextFile(reader.ReadLine().Trim());
             int lastString = Convert.ToInt16(reader.ReadLine());
             StoryCompilator.LineOfStory = 0;

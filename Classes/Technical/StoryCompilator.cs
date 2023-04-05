@@ -141,20 +141,6 @@ namespace SKA_Novel.Classes.Technical
             MediaHelper.SetCutscene(GetArguments(codeString));
         }
 
-        public static void AnimationBackground (string background)
-        {
-            if (MediaHelper.CurrentBackground != GetArguments(background))
-            {
-                MediaHelper.CurrentBackground = GetArguments(background);
-                MainWindow.AllowKeys = false;
-                ControlsManager.DarkScreen.Visibility = System.Windows.Visibility.Visible;
-                _helpVariable = background;
-                ControlsManager.DarkScreenTimer = new DispatcherTimer() { Interval = TimeSpan.FromMilliseconds(30) };
-                ControlsManager.DarkScreenTimer.Tick += ChangeOpacityDarkScreen;
-                ControlsManager.DarkScreenTimer.Start();
-            }
-        }
-
         public static void DarkScreen (string background)
         {
             if (MediaHelper.CurrentBackground != GetArguments(background))
