@@ -13,7 +13,7 @@ namespace SKA_Novel.Classes.Technical
         public string checkedFile;
         public static readonly List<string> listExt = new List<string>() { ".mp4",".mkv",".png", ".jpg", ".jpeg", ".wav", ".mp3", ".ogg", null};
 
-        public bool FileCheck(string fileName, string directory)
+        public bool CheckFile(string fileName, string directory)
         {
             List<string> ext = listExt;
             bool isMatch = false;

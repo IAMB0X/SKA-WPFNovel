@@ -52,9 +52,8 @@
             <DockPanel>
 
                 <StackPanel DockPanel.Dock="Right">
-                    <Slider x:Name="Volume" Orientation="Vertical" Height="100" Width="30" Minimum="0.001" Maximum="0.05"
-                            Background="Black" BorderThickness="0.1"
-                            Value="0.02" ValueChanged="Volume_ValueChanged" SmallChange="0.01" LargeChange="0.01" Visibility="Collapsed"/>
+                    <Slider x:Name="Volume" Orientation="Vertical" Height="100" Width="30" Minimum="0" Maximum="1"
+                            Value="0.1" ValueChanged="Volume_ValueChanged" SmallChange="0.01" LargeChange="0.01" Visibility="Collapsed"/>
                     
                     <Border x:Name="btVolume"
                             CornerRadius="40" Margin="5" Height="40" Width="40" MouseDown="btVolume_MouseDown">
@@ -71,11 +70,8 @@
 
                 <DockPanel MouseDown="brdMainText_MouseDown" Margin="10">
                     <TextBlock x:Name="txtCurrentCharacter" FontSize="36" FontWeight="Black"
-                               TextAlignment="Left" DockPanel.Dock="Left" VerticalAlignment="Center" Margin="25,0,0,20" FontFamily="ГОСТ тип А"/>
-                    <Border x:Name="Stripe" Margin="35,0,0,0">
-                        <Image Source="/Resources/Stripe.png" Opacity="0.8">
-                        </Image>
-                    </Border>
+                               TextAlignment="Left" DockPanel.Dock="Left" VerticalAlignment="Center" Margin="30" FontFamily="ГОСТ тип А"/>
+                    <Image Source="/Resources/Stripe.png" Opacity="0.8" Margin="5"/>
                     <TextBlock x:Name="txtMainText" TextAlignment="Left" Margin="35,30,0,0" FontSize="30" VerticalAlignment="Top" FontFamily="ГОСТ тип А"/>
                 </DockPanel>
 

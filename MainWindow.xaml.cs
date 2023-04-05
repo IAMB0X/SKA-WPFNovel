@@ -46,9 +46,9 @@ namespace SKA_Novel
             ControlsManager.HeroPositions[1] = HeroPosition2;
             ControlsManager.HeroPositions[2] = HeroPosition3;
 
-            MediaHelper.SetEffectAnimation();
-            MediaHelper.SetGameMusic("808steps");
-            MediaHelper.MainMusicPlayer.Volume = 0.03;
+            //MediaHelper.SetEffectAnimation();
+            //MediaHelper.SetGameMusic("808steps");
+            //MediaHelper.MainMusicPlayer.Volume = 0.03;
 
             frameMainMenu.Navigate(new Pages.MainMenuPage());
         }
@@ -61,9 +61,9 @@ namespace SKA_Novel
         private void btVolume_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (Volume.Visibility == Visibility.Visible)
-            Volume.Visibility = Visibility.Collapsed;
+                Volume.Visibility = Visibility.Collapsed;
             else
-            Volume.Visibility = Visibility.Visible;
+                Volume.Visibility = Visibility.Visible;
         }
 
         private void btSave_MouseDown(object sender, MouseButtonEventArgs e)
