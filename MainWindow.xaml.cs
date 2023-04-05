@@ -64,22 +64,6 @@ namespace SKA_Novel
             Volume.Visibility = Visibility.Collapsed;
             else
             Volume.Visibility = Visibility.Visible;
-            /*
-            if (MediaHelper.MainMusicPlayer.Volume > 0)
-            {
-                MediaHelper.MainMusicPlayer.Volume = 0;
-                MediaHelper.MainSoundPlayer.Volume = 0;
-                MediaHelper.MainEnvPlayer.Volume = 0;
-                imgVolume.Source = new BitmapImage(new Uri(MediaHelper.ImagesDirectory + "mute.png"));
-            }
-            else
-            {
-                MediaHelper.MainMusicPlayer.Volume = 0.05;
-                MediaHelper.MainSoundPlayer.Volume = 0.05;
-                MediaHelper.MainEnvPlayer.Volume = 0.05;
-                imgVolume.Source = new BitmapImage(new Uri(MediaHelper.ImagesDirectory + "volume.png"));
-            }
-            */
         }
 
         private void btSave_MouseDown(object sender, MouseButtonEventArgs e)
@@ -87,6 +71,7 @@ namespace SKA_Novel
             MediaHelper.SaveGame();
             new ModalWindows.SaveSuccessWindow().ShowDialog();
         }
+
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {

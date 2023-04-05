@@ -29,13 +29,13 @@ namespace SKA_Novel.Pages
 
         private void MenuItem_MouseEnter(object sender, MouseEventArgs e)
         {
-            (sender as TextBlock).Foreground = Brushes.Yellow;
+            (sender as TextBlock).Foreground = Brushes.White;
             (sender as TextBlock).Effect = new DropShadowEffect
             {
-                Color = new Color { R = 255, G = 0, B = 0 },
+                Color = new Color { R = 255, G = 255, B = 255 },
                 Direction = 320,
                 ShadowDepth = 5,
-                Opacity = 1,
+                Opacity = 0.5,
                 BlurRadius = 10
             };
         }

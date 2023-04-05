@@ -121,7 +121,7 @@ namespace SKA_Novel.Classes.Technical
             else
                 frameIndex = 0;                             
         }
-        public static void Cutscene (string videoName)
+        public static void SetCutscene (string videoName)
         {
             FileModule videoFile = new FileModule();
             videoFile.CheckFile(videoName, CutsceneDirectory);

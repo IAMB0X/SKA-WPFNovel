@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SKA_Novel.Classes.Technical;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,6 +32,7 @@ namespace SKA_Novel.Classes.Game
             Foreground = Brushes.White;
             Margin = new Thickness(20);
         }
+
 
         private void GameOption_MouseEnter(object sender, MouseEventArgs e)
         {
