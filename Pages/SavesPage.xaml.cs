@@ -66,7 +66,7 @@ namespace SKA_Novel.Pages
                     Text = "удалить сохранение",
                     Foreground = new SolidColorBrush(Color.FromRgb(255, 200, 0)),
                     TextAlignment = TextAlignment.Center,
-                    FontSize = 16,
+                    FontSize = 12,
                     Cursor = Cursors.Hand,
                     DataContext = fileName
                 };
@@ -76,7 +76,7 @@ namespace SKA_Novel.Pages
                 Border border = new Border
                 {
                     BorderBrush = new SolidColorBrush(Color.FromRgb(255, 255, 255)),
-                    BorderThickness = new Thickness(3),
+                    BorderThickness = new Thickness(0),
                     Margin = new Thickness(5),
                     CornerRadius = new CornerRadius(10)
                 };
