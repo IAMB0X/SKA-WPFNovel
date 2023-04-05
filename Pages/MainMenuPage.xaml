@@ -46,7 +46,7 @@
 
                 </StackPanel>
 
-                <Border CornerRadius="40" Opacity="0.5" DockPanel.Dock="Left" Background="#000" Margin="10">
+                <Border CornerRadius="40" DockPanel.Dock="Left" Background="#000" Margin="10">
                     <Frame x:Name="menuSectionFrame" NavigationUIVisibility="Hidden" Margin="15"/>
                 </Border>
 

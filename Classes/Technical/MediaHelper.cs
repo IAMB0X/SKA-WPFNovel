@@ -23,6 +23,7 @@ namespace SKA_Novel.Classes.Technical
         public static readonly string BackgroundDirectory = ImagesDirectory + "Backgrounds\\";
         public static readonly string CutsceneDirectory = ImagesDirectory + "Cutscene\\";
         public static readonly string FilesDirectory = BaseDirectory + "Files\\";
+        public static readonly string SaveDirectory = FilesDirectory + "SystemFiles\\Saves\\";
         public static readonly string AudioDirectory = BaseDirectory + "Audio\\";
         public static readonly string MusicDirectory = AudioDirectory + "Music\\" ;
         public static readonly string SoundDirectory = AudioDirectory + "Sound\\";
@@ -64,7 +65,7 @@ namespace SKA_Novel.Classes.Technical
             {
                 ControlsManager.AppMainWindow.Background = new ImageBrush()
                 {
-                    ImageSource = new BitmapImage(new Uri(backgroundFile.checkedFile))
+                    ImageSource = new BitmapImage(new Uri(backgroundFile.CheckedFile))
                 };
                 ControlsManager.BackgroundVideo.Stop();
                 ControlsManager.BackgroundVideo.Visibility = System.Windows.Visibility.Hidden;
@@ -79,7 +80,7 @@ namespace SKA_Novel.Classes.Technical
             if (videoFile.CheckFile(videoName, BackgroundDirectory))
             {
                 ControlsManager.BackgroundVideo.Visibility = System.Windows.Visibility.Visible;
-                ControlsManager.BackgroundVideo.Source = new Uri (videoFile.checkedFile);
+                ControlsManager.BackgroundVideo.Source = new Uri (videoFile.CheckedFile);
                 ControlsManager.BackgroundVideo.MediaEnded += VideoFinish;
                 ControlsManager.BackgroundVideo.Play();
             };
@@ -132,7 +133,7 @@ namespace SKA_Novel.Classes.Technical
                 MainSoundPlayer.Stop();
                 MainEnvPlayer.Stop();
                 ControlsManager.Cutscene.Visibility = System.Windows.Visibility.Visible;
-                ControlsManager.Cutscene.Source = new Uri(videoFile.checkedFile);
+                ControlsManager.Cutscene.Source = new Uri(videoFile.CheckedFile);
                 ControlsManager.Cutscene.MediaEnded += CutsceneFinish;
                 ControlsManager.Cutscene.Play();
             };
@@ -154,7 +155,7 @@ namespace SKA_Novel.Classes.Technical
             envFile.CheckFile(envName, EnvDirectory);
             if (envFile.CheckFile(envName, EnvDirectory))
             {
-                MainEnvPlayer.Open(new Uri(envFile.checkedFile));    //Открывает из своей директории название файла
+                MainEnvPlayer.Open(new Uri(envFile.CheckedFile));    //Открывает из своей директории название файла
 
                 MainEnvPlayer.MediaEnded += EnvFinish;                  //Медиа заканчивается обращается к EnvFinish
                 MainEnvPlayer.Play();                                   //Воспроизводит
@@ -176,7 +177,7 @@ namespace SKA_Novel.Classes.Technical
             soundFile.CheckFile(soundName, SoundDirectory);
             if (soundFile.CheckFile(soundName, SoundDirectory))
             {
-                MainSoundPlayer.Open(new Uri(soundFile.checkedFile));
+                MainSoundPlayer.Open(new Uri(soundFile.CheckedFile));
                 MainSoundPlayer.Play();
             }
         }
@@ -188,7 +189,7 @@ namespace SKA_Novel.Classes.Technical
             FileModule musicFile = new FileModule();
             if (musicFile.CheckFile(musicName, MusicDirectory))
             {
-                MainMusicPlayer.Open(new Uri(musicFile.checkedFile));
+                MainMusicPlayer.Open(new Uri(musicFile.CheckedFile));
                 MainMusicPlayer.MediaEnded += MusicFinish;
                 MainMusicPlayer.Play();
             }
@@ -203,12 +204,12 @@ namespace SKA_Novel.Classes.Technical
         public static void SaveGame(bool isQuickSaving = true)                                                           // Сохранение
         {
             StreamWriter writer;
-            string time = DateTime.Now.Date.ToShortDateString() + " " + DateTime.Now.ToString("HH:mm");
+            string time = DateTime.Now.ToString("dd.MM.yyyy") + " " + DateTime.Now.ToString("HH:mm");
 
             if (isQuickSaving)
-                writer = new StreamWriter(FilesDirectory + "\\SystemFiles\\Saves\\QuickSave.txt");
+                writer = new StreamWriter(SaveDirectory + "QuickSave.txt");
             else
-                writer = new StreamWriter(FilesDirectory + "\\SystemFiles\\Saves\\Save" + "_" + time + ".txt");
+                writer = new StreamWriter(SaveDirectory + "Save_" + (int)DateTime.Now.TimeOfDay.TotalSeconds + ".txt");
 
             writer.WriteLine(CurrentFile);                                                      //Записывает текущего название файла
             writer.WriteLine(StoryCompilator.LineOfStory);                                      //Записывает текущий номер строки
@@ -220,7 +221,7 @@ namespace SKA_Novel.Classes.Technical
 
         public static void LoadGame(string saveName = "QuickSave")
         {
-            StreamReader reader = new StreamReader(FilesDirectory + "\\SystemFiles\\Saves\\" + saveName + ".txt");
+            StreamReader reader = new StreamReader(SaveDirectory + saveName + ".txt");
             StoryCompilator.GoNextFile(reader.ReadLine().Trim());
             int lastString = Convert.ToInt16(reader.ReadLine());
             StoryCompilator.LineOfStory = 0;

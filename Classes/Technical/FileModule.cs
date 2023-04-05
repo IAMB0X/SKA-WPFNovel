@@ -10,7 +10,7 @@ namespace SKA_Novel.Classes.Technical
 {
     internal class FileModule
     {
-        public string checkedFile;
+        public string CheckedFile;
         public static readonly List<string> listExt = new List<string>() { ".mp4",".mkv",".png", ".jpg", ".jpeg", ".wav", ".mp3", ".ogg", null};
 
         public bool CheckFile(string fileName, string directory)
@@ -23,7 +23,7 @@ namespace SKA_Novel.Classes.Technical
                 isMatch = file.Exists;
                 if (isMatch)
                 {
-                    checkedFile = Convert.ToString(file.FullName);
+                    CheckedFile = Convert.ToString(file.FullName);
                     return isMatch;
                 }
             }
