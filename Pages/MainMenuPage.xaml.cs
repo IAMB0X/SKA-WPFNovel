@@ -53,6 +53,7 @@ namespace SKA_Novel.Pages
 
         private void btLoadGame_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            brdMainFrame.Visibility = Visibility.Visible;
             menuSectionFrame.Navigate(new SavesPage());
             //MediaHelper.LoadGame();
             //ControlsManager.MainMenuFrame.Visibility = Visibility.Collapsed;
@@ -74,6 +75,11 @@ namespace SKA_Novel.Pages
         private void btSettings_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
+        }
+
+        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            brdMainFrame.Visibility = Visibility.Collapsed;
         }
     }
 }

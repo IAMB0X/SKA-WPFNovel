@@ -107,7 +107,8 @@ namespace SKA_Novel.Pages
 
         private void btLoadQuickSave_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            MediaHelper.LoadGame();
+            ControlsManager.MainMenuFrame.Visibility = Visibility.Collapsed;
         }
 
         private void btLoadQuickSave_MouseEnter(object sender, MouseEventArgs e)
@@ -127,6 +128,11 @@ namespace SKA_Novel.Pages
         {
             (sender as TextBlock).Foreground = Brushes.White;
             (sender as TextBlock).Effect = null;
+        }
+
+        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            
         }
     }
 }

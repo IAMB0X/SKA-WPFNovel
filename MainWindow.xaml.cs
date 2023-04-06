@@ -81,17 +81,11 @@ namespace SKA_Novel
                 {
                     frameMainMenu.Visibility = Visibility.Visible;
                     AllowKeys = false;
-                    MediaHelper.MainMusicPlayer.Volume = 0;
-                    MediaHelper.MainSoundPlayer.Volume = 0;
-                    MediaHelper.MainEnvPlayer.Volume = 0;
                 }
                 else
                 {
                     frameMainMenu.Visibility = Visibility.Collapsed;
                     AllowKeys = true;
-                    MediaHelper.MainMusicPlayer.Volume = volumeLevel;
-                    MediaHelper.MainSoundPlayer.Volume = volumeLevel;
-                    MediaHelper.MainEnvPlayer.Volume = volumeLevel;
                 }
             }
             else if (AllowKeys)
@@ -112,6 +106,13 @@ namespace SKA_Novel
         private void btClose_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void frameMainMenu_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            MediaHelper.MainMusicPlayer.IsMuted = (frameMainMenu.Visibility == Visibility.Visible);
+            MediaHelper.MainSoundPlayer.IsMuted = (frameMainMenu.Visibility == Visibility.Visible);
+            MediaHelper.MainEnvPlayer.IsMuted = (frameMainMenu.Visibility == Visibility.Visible);
         }
     }
 }

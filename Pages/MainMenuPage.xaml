@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:SKA_Novel.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="766" d:DesignWidth="1386"
-      Title="MainMenuPage">
+      Title="MainMenuPage" IsVisibleChanged="Page_IsVisibleChanged">
 
     <Grid>
 
@@ -21,12 +21,12 @@
 
         <Border CornerRadius="40" Opacity="0.85" VerticalAlignment="Center">
 
-            <DockPanel>
+            <DockPanel VerticalAlignment="Center" LastChildFill="False">
 
                 <TextBlock x:Name="appTitle" Text=" Директива №1 " Margin="35" FontSize="102" DockPanel.Dock="Top" HorizontalAlignment="Right"
                            FontFamily="Bahnschrift" FontStyle="Italic" TextWrapping="Wrap" TextAlignment="Center" FontWeight="Bold"/>
 
-                <StackPanel DockPanel.Dock="Right" Margin="15">
+                <StackPanel VerticalAlignment="Center" DockPanel.Dock="Right" Margin="15">
 
                     <TextBlock x:Name="btStartGame" Text="НОВАЯ ИГРА" Margin="20" FontSize="54" MouseEnter="MenuItem_MouseEnter" MouseLeave="MenuItem_MouseLeave"
                            FontWeight="ExtraBlack" MouseDown="btStartGame_MouseDown" HorizontalAlignment="Right" FontFamily="Segoe UI"/>
@@ -43,11 +43,10 @@
                     <TextBlock x:Name="btExit" Text="ВЫХОД" Margin="20" FontSize="54" MouseEnter="MenuItem_MouseEnter" MouseLeave="MenuItem_MouseLeave"
                            FontWeight="ExtraBlack" MouseDown="btClose_MouseDown" HorizontalAlignment="Right"/>
 
-
                 </StackPanel>
 
-                <Border CornerRadius="40" DockPanel.Dock="Left" Background="#000" Margin="10">
-                    <Frame x:Name="menuSectionFrame" NavigationUIVisibility="Hidden" Margin="15"/>
+                <Border x:Name="brdMainFrame" CornerRadius="40" DockPanel.Dock="Left" Background="#000" Margin="30">
+                    <Frame x:Name="menuSectionFrame" NavigationUIVisibility="Hidden" Margin="5"/>
                 </Border>
 
             </DockPanel>

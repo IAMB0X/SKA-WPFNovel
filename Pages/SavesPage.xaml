@@ -26,7 +26,7 @@
 
         <TextBlock x:Name="btLoadQuickSave" Text="Загрузить быстрое сохранение" Margin="10" Grid.Column="2"
                     FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" FontFamily="Segoe UI"
-                    MouseDown="btLoadQuickSave_MouseDown"
+                    MouseDown="btLoadQuickSave_MouseDown" Cursor="Hand"
                     MouseEnter="btLoadQuickSave_MouseEnter" MouseLeave="btLoadQuickSave_MouseLeave"/>
 
         <ListView x:Name="lvSaves" Grid.Row="1" Grid.ColumnSpan="3" Margin="10" Background="Transparent"

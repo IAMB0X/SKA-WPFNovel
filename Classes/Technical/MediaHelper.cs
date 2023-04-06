@@ -38,7 +38,6 @@ namespace SKA_Novel.Classes.Technical
 
         public static DispatcherTimer EffectTimer = new DispatcherTimer();
 
-
         public static MediaPlayer MainMusicPlayer = new MediaPlayer();
         public static MediaPlayer MainSoundPlayer = new MediaPlayer();
         public static MediaPlayer MainEnvPlayer   = new MediaPlayer();
