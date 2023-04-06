@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -38,57 +39,83 @@ namespace SKA_Novel.Pages
 
             foreach (string fileName in saveFiles)
             {
-                StreamReader reader = new StreamReader(fileName);
-                reader.ReadLine(); reader.ReadLine(); reader.ReadLine();
-
-                FileModule background = new FileModule();
-                background.CheckFile(reader.ReadLine(), MediaHelper.BackgroundDirectory);
-
-                Image img = new Image
+                if (fileName != MediaHelper.SaveDirectory + "QuickSave.txt")
                 {
-                    Source = new BitmapImage(new Uri(background.CheckedFile)),
+                    StreamReader reader = new StreamReader(fileName);
+                    reader.ReadLine(); reader.ReadLine(); reader.ReadLine();
+
+                    FileModule background = new FileModule();
+                    background.CheckFile(reader.ReadLine(), MediaHelper.BackgroundDirectory);
+
+                    TextBlock time = new TextBlock
+                    {
+                        Text = reader.ReadLine(),
+                        TextAlignment = TextAlignment.Center,
+                        Margin = new Thickness(5),
+                        FontSize = 20,
+                        FontWeight = FontWeights.Bold
+                    };
+
+                    Image img = new Image
+                    {
+                        Source = new BitmapImage(new Uri(background.CheckedFile)),
+                        Margin = new Thickness(5),
+                        Height = 100,
+                        Cursor = Cursors.Hand,
+                        DataContext = reader.ReadLine()
+                    };
+
+                    TextBlock delete = new TextBlock
+                    {
+                        Text = "удалить сохранение",
+                        Foreground = new SolidColorBrush(Color.FromRgb(255, 200, 0)),
+                        TextAlignment = TextAlignment.Center,
+                        FontSize = 12,
+                        Cursor = Cursors.Hand,
+                        DataContext = fileName
+                    };
+
+                    img.MouseDown += RewriteSaveFile;
+                    delete.MouseDown += DeleteSave;
+
+                    StackPanel panel = new StackPanel { Margin = new Thickness(10) };
+
+                    panel.Children.Add(img);
+                    panel.Children.Add(time);
+                    panel.Children.Add(delete);
+
+                    lvSaves.Items.Add(panel);
+                    reader.Close();
+                }
+            }
+
+            if (lvSaves.Items.Count != 8)
+            {
+                Image createImg = new Image
+                {
+                    Source = new BitmapImage(new Uri(MediaHelper.ImagesDirectory + "floppy-disk.png")),
                     Margin = new Thickness(5),
                     Height = 100,
                     Cursor = Cursors.Hand
                 };
 
-                TextBlock time = new TextBlock
+                TextBlock create = new TextBlock
                 {
-                    Text = reader.ReadLine(),
-                    TextAlignment = TextAlignment.Center,
-                    Margin = new Thickness(5),
-                    FontSize = 20,
-                    FontWeight = FontWeights.Bold
-                };
-
-                TextBlock delete = new TextBlock
-                {
-                    Text = "удалить сохранение",
-                    Foreground = new SolidColorBrush(Color.FromRgb(255, 200, 0)),
+                    Text = "новое сохранение",
+                    Foreground = new SolidColorBrush(Color.FromRgb(155, 255, 0)),
                     TextAlignment = TextAlignment.Center,
                     FontSize = 12,
-                    Cursor = Cursors.Hand,
-                    DataContext = fileName
+                    Cursor = Cursors.Hand
                 };
 
-                delete.MouseDown += DeleteSave;
+                StackPanel createPanel = new StackPanel { Margin = new Thickness(10) };
 
-                Border border = new Border
-                {
-                    BorderBrush = new SolidColorBrush(Color.FromRgb(255, 255, 255)),
-                    BorderThickness = new Thickness(0),
-                    Margin = new Thickness(5),
-                    CornerRadius = new CornerRadius(10)
-                };
+                createPanel.MouseDown += CreateSave;
 
-                StackPanel panel = new StackPanel { Margin = new Thickness(5) };
+                createPanel.Children.Add(createImg);
+                createPanel.Children.Add(create);
 
-                border.Child = panel;
-                panel.Children.Add(img);
-                panel.Children.Add(time);
-                panel.Children.Add(delete);
-
-                lvSaves.Items.Add(border);
+                lvSaves.Items.Add(createPanel);
             }
         }
 
@@ -99,7 +126,50 @@ namespace SKA_Novel.Pages
                 File.Delete((sender as TextBlock).DataContext.ToString());
                 UpdateSavesList();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void RewriteSaveFile(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                if (e.ClickCount == 2)
+                {
+                    MediaHelper.SaveGame((sender as Image).DataContext.ToString());
+                    UpdateSavesList();
+                }
+            }
             catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        //try
+        //    {
+        //        if (e.ClickCount == 2)
+        //        {
+        //            MediaHelper.LoadGame((sender as Image).DataContext.ToString());
+        //            ControlsManager.MainMenuFrame.Visibility = Visibility.Collapsed;
+        //        }
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        MessageBox.Show(ex.ToString());
+        //    }
+
+        private void CreateSave(object sender, EventArgs e)
+        {
+            try
+            {
+                string saveName = "Save_" + (int)DateTime.Now.TimeOfDay.TotalSeconds + ".txt";
+                MediaHelper.SaveGame(saveName);
+                UpdateSavesList();
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
@@ -107,8 +177,15 @@ namespace SKA_Novel.Pages
 
         private void btLoadQuickSave_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            MediaHelper.LoadGame();
-            ControlsManager.MainMenuFrame.Visibility = Visibility.Collapsed;
+            try
+            {
+                MediaHelper.LoadGame();
+                ControlsManager.MainMenuFrame.Visibility = Visibility.Collapsed;
+            }
+            catch
+            {
+                MessageBox.Show("Сохранение ГГ", "Внимание");
+            }
         }
 
         private void btLoadQuickSave_MouseEnter(object sender, MouseEventArgs e)
@@ -128,11 +205,6 @@ namespace SKA_Novel.Pages
         {
             (sender as TextBlock).Foreground = Brushes.White;
             (sender as TextBlock).Effect = null;
-        }
-
-        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            
         }
     }
 }

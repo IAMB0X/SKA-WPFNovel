@@ -200,27 +200,24 @@ namespace SKA_Novel.Classes.Technical
             MainMusicPlayer.Play();
         }
 
-        public static void SaveGame(bool isQuickSaving = true)                                                           // Сохранение
+        public static void SaveGame(string saveName = "QuickSave.txt")                      // Сохранение
         {
             StreamWriter writer;
             string time = DateTime.Now.ToString("dd.MM.yyyy") + " " + DateTime.Now.ToString("HH:mm");
 
-            if (isQuickSaving)
-                writer = new StreamWriter(SaveDirectory + "QuickSave.txt");
-            else
-                writer = new StreamWriter(SaveDirectory + "Save_" + (int)DateTime.Now.TimeOfDay.TotalSeconds + ".txt");
-
+            writer = new StreamWriter(SaveDirectory + saveName);
             writer.WriteLine(CurrentFile);                                                      //Записывает текущего название файла
             writer.WriteLine(StoryCompilator.LineOfStory);                                      //Записывает текущий номер строки
             writer.WriteLine(ControlsManager.KarmaLevel);                                       //Записывает текущую карму
             writer.WriteLine(CurrentBackground);                                                //Записывает текущий фон
             writer.WriteLine(time);
+            writer.WriteLine(saveName);
             writer.Close();
         }
 
-        public static void LoadGame(string saveName = "QuickSave")
+        public static void LoadGame(string saveName = "QuickSave.txt")
         {
-            StreamReader reader = new StreamReader(SaveDirectory + saveName + ".txt");
+            StreamReader reader = new StreamReader(SaveDirectory + saveName);
             StoryCompilator.GoNextFile(reader.ReadLine().Trim());
             int lastString = Convert.ToInt16(reader.ReadLine());
             StoryCompilator.LineOfStory = 0;

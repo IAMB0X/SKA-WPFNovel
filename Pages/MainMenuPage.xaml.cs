@@ -53,8 +53,6 @@ namespace SKA_Novel.Pages
 
         private void btLoadGame_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            brdMainFrame.Visibility = Visibility.Visible;
-            menuSectionFrame.Navigate(new SavesPage());
             //MediaHelper.LoadGame();
             //ControlsManager.MainMenuFrame.Visibility = Visibility.Collapsed;
         }
@@ -68,8 +66,8 @@ namespace SKA_Novel.Pages
 
         private void btSaveGame_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            MediaHelper.SaveGame(false);
-            new ModalWindows.SaveSuccessWindow().ShowDialog();
+            brdMainFrame.Visibility = Visibility.Visible;
+            menuSectionFrame.Navigate(new SavesPage());
         }
 
         private void btSettings_MouseDown(object sender, MouseButtonEventArgs e)
