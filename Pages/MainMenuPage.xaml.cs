@@ -53,8 +53,8 @@ namespace SKA_Novel.Pages
 
         private void btLoadGame_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            //MediaHelper.LoadGame();
-            //ControlsManager.MainMenuFrame.Visibility = Visibility.Collapsed;
+            brdMainFrame.Visibility = Visibility.Visible;
+            menuSectionFrame.Navigate(new SavesPage(false));
         }
 
         private void btStartGame_MouseDown(object sender, MouseButtonEventArgs e)
@@ -62,6 +62,7 @@ namespace SKA_Novel.Pages
             ControlsManager.MainMenuFrame.Visibility = Visibility.Collapsed;
             StoryCompilator.GoNextFile("Startfile"); // Стартовый файл истории, сейчас: тестовый
             StoryCompilator.GoNextLine();
+            ControlsManager.IsGameStarted = true;
         }
 
         private void btSaveGame_MouseDown(object sender, MouseButtonEventArgs e)

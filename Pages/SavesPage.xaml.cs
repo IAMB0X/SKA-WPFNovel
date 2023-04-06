@@ -24,9 +24,16 @@ namespace SKA_Novel.Pages
     /// </summary>
     public partial class SavesPage : Page
     {
-        public SavesPage()
+        public bool IsSavingPage;
+
+        public SavesPage(bool isSavingPage = true)
         {
             InitializeComponent();
+            
+            IsSavingPage = isSavingPage;
+
+            if (!IsSavingPage)
+                txtTitle.Text = "ЗАГРУЗКИ";
 
             UpdateSavesList();
         }
@@ -75,7 +82,11 @@ namespace SKA_Novel.Pages
                         DataContext = fileName
                     };
 
-                    img.MouseDown += RewriteSaveFile;
+                    if (IsSavingPage)
+                        img.MouseDown += RewriteSaveFile;
+                    else
+                        img.MouseDown += LoadSaveFile;
+
                     delete.MouseDown += DeleteSave;
 
                     StackPanel panel = new StackPanel { Margin = new Thickness(10) };
@@ -89,7 +100,7 @@ namespace SKA_Novel.Pages
                 }
             }
 
-            if (lvSaves.Items.Count != 8)
+            if (ControlsManager.IsGameStarted && IsSavingPage && lvSaves.Items.Count != 8)
             {
                 Image createImg = new Image
                 {
@@ -136,7 +147,7 @@ namespace SKA_Novel.Pages
         {
             try
             {
-                if (e.ClickCount == 2)
+                if (ControlsManager.IsGameStarted && e.ClickCount == 2)
                 {
                     MediaHelper.SaveGame((sender as Image).DataContext.ToString());
                     UpdateSavesList();
@@ -148,18 +159,22 @@ namespace SKA_Novel.Pages
             }
         }
 
-        //try
-        //    {
-        //        if (e.ClickCount == 2)
-        //        {
-        //            MediaHelper.LoadGame((sender as Image).DataContext.ToString());
-        //            ControlsManager.MainMenuFrame.Visibility = Visibility.Collapsed;
-        //        }
-        //    }
-        //    catch(Exception ex)
-        //    {
-        //        MessageBox.Show(ex.ToString());
-        //    }
+        private void LoadSaveFile(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                if (e.ClickCount == 2)
+                {
+                    MediaHelper.LoadGame((sender as Image).DataContext.ToString());
+                    ControlsManager.MainMenuFrame.Visibility = Visibility.Collapsed;
+                    ControlsManager.IsGameStarted = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
 
         private void CreateSave(object sender, EventArgs e)
         {
@@ -181,6 +196,7 @@ namespace SKA_Novel.Pages
             {
                 MediaHelper.LoadGame();
                 ControlsManager.MainMenuFrame.Visibility = Visibility.Collapsed;
+                ControlsManager.IsGameStarted = true;
             }
             catch
             {
