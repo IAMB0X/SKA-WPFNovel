@@ -352,9 +352,10 @@ namespace SKA_Novel.Classes.Technical
             string[] options = GetArguments(codeString).Split(',');
             AddOptions(options);
             ControlsManager.MainText.Visibility = System.Windows.Visibility.Hidden;
-            Technical.ControlsManager.SpeakerName.Visibility = Visibility.Hidden;
+            ControlsManager.SpeakerName.Visibility = Visibility.Hidden;
             MainWindow.AllowKeys = false;
         }
+
         private static void AddOptions(string[] optionsFiles)
         {
             for (int i = 0; i < optionsFiles.Count(); i++)

@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Media;
@@ -217,6 +218,12 @@ namespace SKA_Novel.Classes.Technical
 
         public static void LoadGame(string saveName = "QuickSave.txt")
         {
+            ControlsManager.MainText.Visibility = System.Windows.Visibility.Visible;
+            ControlsManager.SpeakerName.Visibility = Visibility.Visible;
+            ControlsManager.OptionPanel.Children.Clear();
+            MainWindow.AllowKeys = true;
+
+
             StreamReader reader = new StreamReader(SaveDirectory + saveName);
             StoryCompilator.GoNextFile(reader.ReadLine().Trim());
             int lastString = Convert.ToInt16(reader.ReadLine());

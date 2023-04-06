@@ -24,6 +24,8 @@ namespace SKA_Novel.Classes.Technical
         public static TypingTimer TypingTimer { get; set; }
         public static DispatcherTimer DarkScreenTimer { get; set; }
 
+        public static Boolean IsGameStarted { get; set; } = false;
+
         public static int KarmaLevel { get; set; } = 0;
 
     }

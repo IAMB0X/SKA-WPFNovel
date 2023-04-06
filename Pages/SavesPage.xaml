@@ -21,7 +21,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="СОХРАНЕНИЯ" Margin="10" FontSize="32" FontWeight="Bold"
+        <TextBlock x:Name="txtTitle" Text="СОХРАНЕНИЯ" Margin="10" FontSize="32" FontWeight="Bold"
                     HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Segoe UI"/>
 
         <TextBlock x:Name="btLoadQuickSave" Text="Загрузить быстрое сохранение" Margin="10" Grid.Column="2"
