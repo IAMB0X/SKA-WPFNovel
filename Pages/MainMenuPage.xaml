@@ -45,7 +45,7 @@
 
                 </StackPanel>
 
-                <Border x:Name="brdMainFrame" CornerRadius="40" DockPanel.Dock="Left" Background="#000" Margin="30">
+                <Border x:Name="brdMainFrame" CornerRadius="10" DockPanel.Dock="Left" Background="#000" OpacityMask="Black" Opacity="0.3" Margin="30">
                     <Frame x:Name="menuSectionFrame" NavigationUIVisibility="Hidden" Margin="5"/>
                 </Border>
 

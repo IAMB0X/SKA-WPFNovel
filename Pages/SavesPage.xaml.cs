@@ -47,6 +47,7 @@ namespace SKA_Novel.Pages
                     FileModule background = new FileModule();
                     background.CheckFile(reader.ReadLine(), MediaHelper.BackgroundDirectory);
 
+
                     TextBlock time = new TextBlock
                     {
                         Text = reader.ReadLine(),
