@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SKA_Novel"
         mc:Ignorable="d"
-        Title="SKA Novel" Height="450" Width="800" ResizeMode="NoResize" WindowState="Maximized" WindowStyle="None"
-        Background="Black" Keyboard.KeyUp="Window_KeyDown">
-
+        Title="SKA Novel" Height="450" Width="800" ResizeMode="NoResize" WindowState="Maximized"
+        WindowStyle="None" Keyboard.KeyUp="Window_KeyDown" Background="#000">
+    
     <Window.Effect>
         <BlurEffect KernelType="Gaussian" Radius="2.7" />
     </Window.Effect>
@@ -47,15 +47,15 @@
             <DockPanel>
 
                 <StackPanel DockPanel.Dock="Right">
-                    
+
                     <Slider x:Name="Volume" Orientation="Vertical" Height="100" Width="30" Minimum="0" Maximum="1"
                             Value="0.1" ValueChanged="Volume_ValueChanged" SmallChange="0.01" LargeChange="0.01" Visibility="Collapsed"/>
-                    
+
                     <Border x:Name="btVolume"
                             CornerRadius="40" Margin="5" Height="40" Width="40" MouseDown="btVolume_MouseDown">
                         <Image x:Name="imgVolume" Source="/volume.png"/>
                     </Border>
-                    
+
                     <Border x:Name="btSave" 
                             CornerRadius="10" Margin="5" Height="40" Width="40" MouseDown="btSave_MouseDown">
                         <Image Source="/floppy-disk.png"/>
@@ -64,21 +64,21 @@
                 </StackPanel>
 
                 <DockPanel MouseDown="brdMainText_MouseDown" Margin="10">
-                    
+
                     <TextBlock x:Name="txtCurrentCharacter" FontSize="36" FontWeight="Black" TextAlignment="Left"
                                DockPanel.Dock="Left" VerticalAlignment="Center" Margin="30" FontFamily="ГОСТ тип А"/>
-                    
+
                     <Image Source="/Resources/Stripe.png" Opacity="0.8" Margin="5"/>
-                    
+
                     <TextBlock x:Name="txtMainText" TextAlignment="Left" Margin="30" FontSize="30"
                                VerticalAlignment="Top" FontFamily="ГОСТ тип А"/>
-                    
+
                 </DockPanel>
 
             </DockPanel>
 
         </Border>
-        
+
         <MediaElement Name="Cutscene" Stretch="Fill" Grid.ColumnSpan="2" Grid.RowSpan="4" UnloadedBehavior="Manual" />
 
         <Border Background="#000" Opacity="0.75" VerticalAlignment="Center"
