@@ -201,7 +201,6 @@ namespace SKA_Novel.Pages
             }
             catch
             {
-                MessageBox.Show("Сохранение ГГ", "Внимание");
             }
         }
 

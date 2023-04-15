@@ -187,5 +187,8 @@
   <ItemGroup>
     <Folder Include="bin\Debug\Resources\Fonts\" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DefaultBackground.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,8 +7,10 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SavesPage">
+    
 
     <Grid>
+        
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -21,7 +23,11 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBlock x:Name="txtTitle" Text="СОХРАНЕНИЯ" Margin="10" FontSize="32" FontWeight="Bold"
+        <Border x:Name="bgPage" Grid.ColumnSpan="3" Grid.RowSpan="2"
+                Background="Black" Opacity="0.4">
+        </Border>
+
+        <TextBlock x:Name="txtTitle" Text="СОХРАНЕНИЯ" Margin="20,10,10,10" FontSize="32" FontWeight="Bold"
                     HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Segoe UI"/>
 
         <TextBlock x:Name="btLoadQuickSave" Text="Загрузить быстрое сохранение" Margin="10" Grid.Column="2"
@@ -29,7 +35,7 @@
                     MouseDown="btLoadQuickSave_MouseDown" Cursor="Hand"
                     MouseEnter="btLoadQuickSave_MouseEnter" MouseLeave="btLoadQuickSave_MouseLeave"/>
 
-        <ListView x:Name="lvSaves" Grid.Row="1" Grid.ColumnSpan="3" Margin="10" Background="Transparent"
+        <ListView x:Name="lvSaves" Grid.Row="1" Grid.ColumnSpan="3" Margin="10" Background="Transparent" BorderThickness="0.5"
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>

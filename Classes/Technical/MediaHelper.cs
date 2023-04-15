@@ -63,13 +63,13 @@ namespace SKA_Novel.Classes.Technical
             backgroundFile.CheckFile(backgroundName, BackgroundDirectory);
             if (backgroundFile.CheckFile(backgroundName, BackgroundDirectory))
             {
+                CurrentBackground = backgroundName;
+                ControlsManager.BackgroundVideo.Stop();
+                ControlsManager.BackgroundVideo.Visibility = System.Windows.Visibility.Hidden;
                 ControlsManager.AppMainWindow.Background = new ImageBrush()
                 {
                     ImageSource = new BitmapImage(new Uri(backgroundFile.CheckedFile))
                 };
-                ControlsManager.BackgroundVideo.Stop();
-                ControlsManager.BackgroundVideo.Visibility = System.Windows.Visibility.Hidden;
-                StoryCompilator.DarkScreen(backgroundName);
             }    
         }
 

@@ -6,8 +6,11 @@
         xmlns:local="clr-namespace:SKA_Novel"
         mc:Ignorable="d"
         Title="SKA Novel" Height="450" Width="800" ResizeMode="NoResize" WindowState="Maximized"
-        WindowStyle="None" Keyboard.KeyUp="Window_KeyDown" Background="#000">
-    
+        WindowStyle="None" Keyboard.KeyUp="Window_KeyDown">
+    <Window.Background>
+        <ImageBrush ImageSource="/Resources/DefaultBackground.png"/>
+    </Window.Background>
+
     <Window.Effect>
         <BlurEffect KernelType="Gaussian" Radius="2.7" />
     </Window.Effect>
