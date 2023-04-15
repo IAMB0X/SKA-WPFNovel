@@ -77,6 +77,8 @@ namespace SKA_Novel.Pages
 
         private void btSettings_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            brdMainFrame.Visibility = Visibility.Visible;
+            menuSectionFrame.Navigate(new SettingsPage());
 
         }
 

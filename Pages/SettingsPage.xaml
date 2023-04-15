@@ -1,0 +1,45 @@
+﻿<Page x:Class="SKA_Novel.Pages.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SKA_Novel.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SettingsPage">
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="txtTitle" Text="НАСТРОЙКИ" Margin="10" FontSize="32" FontWeight="Bold"
+                    HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Segoe UI"/>
+
+        <TextBlock x:Name="btDefaultSettings" Text="Установить&#x0a;по умолчанию" Margin="10" Grid.Column="2"
+                    FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" FontFamily="Segoe UI"
+                    MouseDown="btDefaultSettings_MouseDown"  Cursor="Hand"
+                    MouseEnter="btDefaultSettings_MouseEnter"  MouseLeave="btDefaultSettings_MouseLeave"/>
+
+        <StackPanel Grid.Row="1" Margin="25">
+            <TextBlock Text="Скорость появления текста:" Margin="10" HorizontalAlignment="Left" FontSize="24"/>
+            <TextBlock Text="Масштаб приложения:" Margin="10" HorizontalAlignment="Left" FontSize="24"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Margin="25" Grid.ColumnSpan="2" Grid.Row="1">
+            <Slider x:Name="slTypeInterval" Margin="15" Maximum="150" Minimum="15" SmallChange="1"
+                     TickFrequency="15" TickPlacement="TopLeft" Value="30" Cursor="Hand" ValueChanged="slTypeInterval_ValueChanged"/>
+            <Slider x:Name="slLayoutSize" Margin="15" Maximum="200" Minimum="100" SmallChange="1"
+                     TickFrequency="25" TickPlacement="TopLeft" Value="125" Cursor="Hand" ValueChanged="slLayoutSize_ValueChanged"/>
+        </StackPanel>
+
+    </Grid>
+</Page>
