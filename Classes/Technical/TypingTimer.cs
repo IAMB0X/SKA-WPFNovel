@@ -12,10 +12,10 @@ namespace SKA_Novel.Classes.Technical
 {
     internal class TypingTimer
     {
-        private readonly DispatcherTimer timer = new DispatcherTimer()
-        {
-            Interval = TimeSpan.FromMilliseconds(30)
-        };
+        public static int Interval { get; set; } = 30;
+
+        public readonly DispatcherTimer Timer = new DispatcherTimer();
+
         public bool IsTyping { get; set; } = true;
         private int _letterIndex = 0;
         private int _textLength;
@@ -24,14 +24,15 @@ namespace SKA_Novel.Classes.Technical
         
         public TypingTimer(TextBlock textBlock, string text)
         {
+            Timer.Interval = TimeSpan.FromMilliseconds(Interval);
             _targetTextBlock = textBlock;
             _textLength = text.Length;
             _content = text;
             _targetTextBlock.Text = "";
-            timer.Tick += TypingText;
-            timer.Start();
+            Timer.Tick += TypingText;
+            Timer.Start();
             if (ControlsManager.TypingTimer != null)
-                ControlsManager.TypingTimer.timer.Stop();
+                ControlsManager.TypingTimer.Timer.Stop();
             ControlsManager.TypingTimer = this;
         }
 
@@ -53,13 +54,18 @@ namespace SKA_Novel.Classes.Technical
             else
             {
                 IsTyping = false;
-                timer.Stop();
+                Timer.Stop();
             }
+        }
+
+        public void UpdateTypingInterval()
+        {
+            Timer.Interval = TimeSpan.FromMilliseconds(Interval);
         }
 
         public void FinishTyping()
         {
-            timer.Stop();
+            Timer.Stop();
             _targetTextBlock.Text = _content;
             IsTyping = false;
         }
