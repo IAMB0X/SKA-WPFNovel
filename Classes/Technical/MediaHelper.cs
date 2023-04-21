@@ -70,6 +70,7 @@ namespace SKA_Novel.Classes.Technical
                 {
                     ImageSource = new BitmapImage(new Uri(backgroundFile.CheckedFile))
                 };
+                ControlsManager.AppMainWindow.Focus();
             }    
         }
 
