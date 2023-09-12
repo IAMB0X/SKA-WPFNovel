@@ -10,10 +10,7 @@
 
     <Grid>
 
-        <Image Source="/Resources/коридор 2.png" Stretch="Fill">
-            <Image.OpacityMask>
-                <ImageBrush ImageSource="/Resources/коридор 2.png"/>
-            </Image.OpacityMask>
+        <Image Source="/bin/Debug/Resources/Interface/main-menu.png" Stretch="Fill">
             <Image.Effect>
                 <BlurEffect Radius="10" KernelType="Gaussian"/>
             </Image.Effect>

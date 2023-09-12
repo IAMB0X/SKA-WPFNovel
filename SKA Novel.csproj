@@ -194,5 +194,14 @@
   <ItemGroup>
     <Folder Include="bin\Debug\Resources\Fonts\" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bin\Debug\Resources\Interface\cancel.png" />
+    <Resource Include="bin\Debug\Resources\Interface\floppy-disk.png" />
+    <Resource Include="bin\Debug\Resources\Interface\mute.png" />
+    <Resource Include="bin\Debug\Resources\Interface\volume.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bin\Debug\Resources\Interface\main-menu.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

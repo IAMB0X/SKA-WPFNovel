@@ -29,6 +29,7 @@ namespace SKA_Novel.Classes.Technical
         public static readonly string MusicDirectory = AudioDirectory + "Music\\" ;
         public static readonly string SoundDirectory = AudioDirectory + "Sound\\";
         public static readonly string EnvDirectory = AudioDirectory + "Enviroment\\";
+        public static readonly string DesignDirectory = BaseDirectory + "Interface\\";
         public static string CurrentFile;
         public static string CurrentMusic;
         public static string CurrentEnviroment;

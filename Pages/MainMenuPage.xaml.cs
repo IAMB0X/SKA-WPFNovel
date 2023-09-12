@@ -63,7 +63,7 @@ namespace SKA_Novel.Pages
             ControlsManager.SpeakerName.Visibility = Visibility.Visible;
             ControlsManager.OptionPanel.Children.Clear();
             ControlsManager.MainMenuFrame.Visibility = Visibility.Collapsed;
-            StoryCompilator.GoNextFile("Startfile"); // Стартовый файл истории, сейчас: тестовый
+            StoryCompilator.GoNextFile("Startfile");
             StoryCompilator.GoNextLine();
             MainWindow.AllowKeys = true;
             ControlsManager.IsGameStarted = true;
