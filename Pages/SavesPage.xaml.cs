@@ -102,7 +102,7 @@ namespace SKA_Novel.Pages
                 }
             }
 
-            if (ControlsManager.IsGameStarted && IsSavingPage && lvSaves.Items.Count != 8)
+            if (StoryCompilator.IsGameStarted && IsSavingPage && lvSaves.Items.Count != 8)
             {
                 Image createImg = new Image
                 {
@@ -149,7 +149,7 @@ namespace SKA_Novel.Pages
         {
             try
             {
-                if (ControlsManager.IsGameStarted && e.ClickCount == 2)
+                if (StoryCompilator.IsGameStarted && e.ClickCount == 2)
                 {
                     MediaHelper.SaveGame((sender as Image).DataContext.ToString());
                     UpdateSavesList();
@@ -169,7 +169,7 @@ namespace SKA_Novel.Pages
                 {
                     MediaHelper.LoadGame((sender as Image).DataContext.ToString());
                     ControlsManager.MainMenuFrame.Visibility = Visibility.Collapsed;
-                    ControlsManager.IsGameStarted = true;
+                    StoryCompilator.IsGameStarted = true;
                 }
             }
             catch (Exception ex)
@@ -198,7 +198,7 @@ namespace SKA_Novel.Pages
             {
                 MediaHelper.LoadGame();
                 ControlsManager.MainMenuFrame.Visibility = Visibility.Collapsed;
-                ControlsManager.IsGameStarted = true;
+                StoryCompilator.IsGameStarted = true;
             }
             catch
             {

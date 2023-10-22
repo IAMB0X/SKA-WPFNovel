@@ -51,10 +51,10 @@ namespace SKA_Novel.Classes.Game
 
         private void GameOption_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            ControlsManager.KarmaLevel += KarmaWeight;
+            StoryCompilator.KarmaLevel += KarmaWeight;
 
             if (!string.IsNullOrEmpty(Title) && !string.IsNullOrEmpty(Value))
-				ControlsManager.OptionResults.Add(new GameChoiseResult(Title, Value));
+				StoryCompilator.OptionResults.Add(new GameChoiseResult(Title, Value));
 
 			StoryCompilator.GoNextFile(TargetFile);
             ControlsManager.OptionPanel.Children.Clear();

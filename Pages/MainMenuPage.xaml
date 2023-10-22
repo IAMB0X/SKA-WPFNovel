@@ -23,7 +23,7 @@
 
             <DockPanel VerticalAlignment="Center">
 
-                <TextBlock x:Name="appTitle" Text=" Visheribus " Margin="35" FontSize="102" DockPanel.Dock="Top" HorizontalAlignment="Right"
+                <TextBlock x:Name="mainTitle" Margin="35" FontSize="102" DockPanel.Dock="Top" HorizontalAlignment="Right"
                            FontFamily="Bahnschrift" FontStyle="Italic" TextWrapping="Wrap" TextAlignment="Center" FontWeight="Bold"/>
 
                 <StackPanel VerticalAlignment="Center" DockPanel.Dock="Right" Margin="15">

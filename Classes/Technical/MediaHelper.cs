@@ -205,8 +205,8 @@ namespace SKA_Novel.Classes.Technical
             FileStream stream = new FileStream(SaveDirectory + saveName, FileMode.OpenOrCreate);
             BinaryFormatter bf = new BinaryFormatter();
             bf.Serialize(stream, new DataToSave(saveName, CurrentFile, CurrentBackground,
-                                        StoryCompilator.LineOfStory, ControlsManager.KarmaLevel,
-                                        DateTime.Now, ControlsManager.OptionResults));
+                                        StoryCompilator.LineOfStory, StoryCompilator.KarmaLevel,
+                                        DateTime.Now, StoryCompilator.OptionResults));
             stream.Close();
         }
 
@@ -221,9 +221,11 @@ namespace SKA_Novel.Classes.Technical
             StoryCompilator.GoNextFile(data.File);
             int lastString = data.Line;
             StoryCompilator.LineOfStory = 0;
-            ControlsManager.KarmaLevel = data.KarmaLevel;
+			StoryCompilator.KarmaLevel = data.KarmaLevel;
+            StoryCompilator.OptionResults = data.Results;
 
-            while (StoryCompilator.LineOfStory < lastString)
+
+			while (StoryCompilator.LineOfStory < lastString)
 				StoryCompilator.GoNextLine();
 
 			ControlsManager.DarkScreenTimer.Stop();

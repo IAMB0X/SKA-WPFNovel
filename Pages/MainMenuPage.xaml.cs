@@ -25,6 +25,7 @@ namespace SKA_Novel.Pages
         public MainMenuPage()
         {
             InitializeComponent();
+            mainTitle.Text = StoryCompilator.Title;
         }
 
         private void MenuItem_MouseEnter(object sender, MouseEventArgs e)
@@ -66,7 +67,7 @@ namespace SKA_Novel.Pages
             StoryCompilator.GoNextFile("::Startfile"); // Стартовый файл истории, сейчас: тестовый
             StoryCompilator.GoNextLine();
             MainWindow.AllowKeys = true;
-            ControlsManager.IsGameStarted = true;
+            StoryCompilator.IsGameStarted = true;
         }
 
         private void btSaveGame_MouseDown(object sender, MouseButtonEventArgs e)

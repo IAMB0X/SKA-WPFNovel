@@ -15,12 +15,17 @@ using System.Windows.Threading;
 
 namespace SKA_Novel.Classes.Technical
 {
-    internal class StoryCompilator
+    public static class StoryCompilator
     {
+        public static string Title { get; set; } = "Visheribus";
+        public static string MainHeroName { get; set; } = "Хуй";
         public static int LineOfStory { get; set; } = -1;
         public static string[] CurrentStory { get; set; }
+		public static bool IsGameStarted { get; set; } = false;
+		public static int KarmaLevel { get; set; } = 0;
+		public static List<GameChoiseResult> OptionResults { get; set; } = new List<GameChoiseResult>();
 
-        public delegate void Command(string codeString);
+		public delegate void Command(string codeString);
 
         //СПРАВКА ПО КОМАНДАМ (*имякоманды )
 
@@ -328,7 +333,7 @@ namespace SKA_Novel.Classes.Technical
             }
             else if (shortName == "I")
             {
-                ControlsManager.SpeakerName.Text = "Тэй:";
+                ControlsManager.SpeakerName.Text = MainHeroName + ":";
                 ControlsManager.SpeakerName.Foreground = Brushes.LightBlue;
                 foreach (DockPanel heroPosition in ControlsManager.HeroPositions)
                     if (heroPosition.Children.Count > 0)
@@ -364,7 +369,7 @@ namespace SKA_Novel.Classes.Technical
         {
             string[] arguments = GetArguments(codeString).Split(',');
             int needKarma = Convert.ToInt16(arguments[0]);
-            if (ControlsManager.KarmaLevel >= needKarma)
+            if (KarmaLevel >= needKarma)
                 GoThisLine(": " + arguments[1]);
         }
 
