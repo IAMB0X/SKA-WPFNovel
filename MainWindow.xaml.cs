@@ -32,7 +32,7 @@ namespace SKA_Novel
         {
             InitializeComponent();
 
-            //ControlsManager.EffectScreen = EffectScreen;
+            ControlsManager.EffectScreen = EffectScreen;
             ControlsManager.AppMainWindow = this;
             ControlsManager.BackgroundVideo = BackgroundVideo;
             ControlsManager.Cutscene = Cutscene;

@@ -158,9 +158,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="коридор 2.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.7.2 %28x86 и x64%29</ProductName>
@@ -173,13 +170,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="floppy-disk.png" />
+    <Resource Include="Resources\floppy-disk.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="volume.png" />
+    <Resource Include="Resources\volume.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="cancel.png" />
+    <Resource Include="Resources\cancel.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="bin\Debug\Resources\Images\cancel.png" />
@@ -192,9 +189,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Debug\Resources\Fonts\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="MainMenu.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\MainMenu.jpg" />
