@@ -1,0 +1,99 @@
+﻿<Window x:Class="SKA_Novel.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SKA_Novel"
+        mc:Ignorable="d"
+        Title="SKA Novel" Height="450" Width="800" ResizeMode="NoResize" WindowState="Maximized"
+        WindowStyle="None" Keyboard.KeyUp="Window_KeyDown" Background="#000">
+    
+    <Window.Effect>
+        <BlurEffect KernelType="Gaussian" Radius="2.7" />
+    </Window.Effect>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.55*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="0.75*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <MediaElement Name="BackgroundVideo" Stretch="Fill" Grid.ColumnSpan="2" UnloadedBehavior="Manual" Grid.Row="0" Grid.RowSpan="3"/>
+
+        <DockPanel x:Name="HeroPosition1" Grid.Column="0"
+                MouseDown="brdMainText_MouseDown" Grid.Row="1" Grid.RowSpan="2"/>
+        <DockPanel x:Name="HeroPosition2" Grid.ColumnSpan="2"
+                MouseDown="brdMainText_MouseDown" Grid.Row="1" Grid.RowSpan="2"/>
+        <DockPanel x:Name="HeroPosition3" Grid.Column="1"
+                MouseDown="brdMainText_MouseDown" Grid.Row="1" Grid.RowSpan="2"/>
+
+        <Border x:Name="btClose" Grid.Column="2"
+                VerticalAlignment="Top" HorizontalAlignment="Right" CornerRadius="50" Margin="20"
+                Height="65" Width="65" MouseDown="btClose_MouseDown">
+            <Image Source="/cancel.png"/>
+        </Border>
+
+
+        <Border x:Name="brdMainText" Background="#000" Grid.Row="2" Grid.ColumnSpan="2">
+
+            <DockPanel>
+
+                <StackPanel DockPanel.Dock="Right">
+
+                    <Slider x:Name="Volume" Orientation="Vertical" Height="100" Width="30" Minimum="0" Maximum="1"
+                            Value="0.1" ValueChanged="Volume_ValueChanged" SmallChange="0.01" LargeChange="0.01" Visibility="Collapsed"/>
+
+                    <Border x:Name="btVolume"
+                            CornerRadius="40" Margin="5" Height="40" Width="40" MouseDown="btVolume_MouseDown">
+                        <Image x:Name="imgVolume" Source="/volume.png"/>
+                    </Border>
+
+                    <Border x:Name="btSave" 
+                            CornerRadius="10" Margin="5" Height="40" Width="40" MouseDown="btSave_MouseDown">
+                        <Image Source="/floppy-disk.png"/>
+                    </Border>
+
+                </StackPanel>
+
+                <DockPanel MouseDown="brdMainText_MouseDown" Margin="10">
+
+                    <TextBlock x:Name="txtCurrentCharacter" FontSize="36" FontWeight="Black" TextAlignment="Left"
+                               DockPanel.Dock="Left" VerticalAlignment="Center" Margin="30" FontFamily="ГОСТ тип А"/>
+
+                    <Image Source="/Resources/Stripe.png" Opacity="0.8" Margin="5"/>
+
+                    <TextBlock x:Name="txtMainText" TextAlignment="Left" Margin="30" FontSize="30"
+                               VerticalAlignment="Top" FontFamily="ГОСТ тип А"/>
+
+                </DockPanel>
+
+            </DockPanel>
+
+        </Border>
+
+        <MediaElement Name="Cutscene" Stretch="Fill" Grid.ColumnSpan="2" Grid.RowSpan="4" UnloadedBehavior="Manual" />
+
+        <Border Background="#000" Opacity="0.75" VerticalAlignment="Center"
+                Grid.ColumnSpan="2" CornerRadius="50" Margin="25" Grid.Row="1">
+
+            <StackPanel x:Name="stckPnlOptions" HorizontalAlignment="Center"/>
+
+        </Border>
+
+        <DockPanel x:Name="DarkScreen" Background="#000" Grid.ColumnSpan="2" Grid.RowSpan="2"
+                   Opacity="0" Visibility="Collapsed" />
+        
+        <Frame x:Name="frameMainMenu" Grid.ColumnSpan="2" Grid.RowSpan="3" NavigationUIVisibility="Hidden" IsVisibleChanged="frameMainMenu_IsVisibleChanged"/>
+
+
+
+    </Grid>
+</Window>
+    

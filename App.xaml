@@ -1,0 +1,16 @@
+﻿<Application x:Class="SKA_Novel.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:SKA_Novel"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#FFF"/>
+            <Setter Property="FontSize" Value="42"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+
+    </Application.Resources>
+</Application>
