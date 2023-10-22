@@ -220,7 +220,7 @@ namespace SKA_Novel.Classes.Technical
 
         public static void SetEnv(string codeString)
         {
-                MediaHelper.SetEnvsound(GetArguments(codeString));
+                MediaHelper.SetEnvSound(GetArguments(codeString));
         }
 
         public static void AddHero(string codeString)
@@ -228,8 +228,8 @@ namespace SKA_Novel.Classes.Technical
             string[] arguments = GetArguments(codeString).Split(',');
             byte position = Convert.ToByte(arguments[2].Trim());
 
-            Game.Character character = new Game.Character(arguments[0]);
-            new Game.CharacterView(character, arguments[1].Trim(), position);
+            Character character = new Character(arguments[0]);
+            new CharacterView(character, arguments[1].Trim(), position);
         }
 
         public static void ClearHero(string codeString)
@@ -244,7 +244,7 @@ namespace SKA_Novel.Classes.Technical
             string[] arguments = GetArguments(codeString).Split(',');
             byte position = Convert.ToByte(arguments[1].Trim());
 
-            foreach(Game.CharacterView character in ControlsManager.HeroPositions[--position].Children)
+            foreach(CharacterView character in ControlsManager.HeroPositions[--position].Children)
                 if (character.Character.FullName == arguments[0].Trim())
                 {
                     character.UpdateEmotion(arguments[2].Trim());
@@ -260,7 +260,7 @@ namespace SKA_Novel.Classes.Technical
             byte spriteNumber = 0;
             bool animationLoop = (arguments[4].Trim() == "loop");
 
-            foreach (Game.CharacterView character in ControlsManager.HeroPositions[--position].Children)
+            foreach (CharacterView character in ControlsManager.HeroPositions[--position].Children)
                 if (character.Character.FullName == arguments[0].Trim())                                //Если имя соответствуем имени в аргументе 0, то
                 {
                     List<string> sprites = new List<string>();      //Лист спрайтов
@@ -292,7 +292,7 @@ namespace SKA_Novel.Classes.Technical
             string[] arguments = GetArguments(codeString).Split(',');                                   //Разбивает текст на аргументы разделяемые ","
             byte position = Convert.ToByte(arguments[1].Trim());                                        //Определяет позицию из 1-го аргумента
 
-            foreach (Game.CharacterView character in ControlsManager.HeroPositions[--position].Children)
+            foreach (CharacterView character in ControlsManager.HeroPositions[--position].Children)
                 if (character.Character.FullName == arguments[0].Trim())
                 {
                     character.StopAnimation();
@@ -306,7 +306,7 @@ namespace SKA_Novel.Classes.Technical
             string[] arguments = GetArguments(codeString).Split(',');
             byte position = Convert.ToByte(arguments[1].Trim());
 
-            foreach (Game.CharacterView character in ControlsManager.HeroPositions[--position].Children)
+            foreach (CharacterView character in ControlsManager.HeroPositions[--position].Children)
                 if (character.Character.FullName == arguments[0].Trim())
                 {
                     character.MirrorImage();
@@ -332,14 +332,14 @@ namespace SKA_Novel.Classes.Technical
                 ControlsManager.SpeakerName.Foreground = Brushes.LightBlue;
                 foreach (DockPanel heroPosition in ControlsManager.HeroPositions)
                     if (heroPosition.Children.Count > 0)
-                        foreach (Game.CharacterView character in heroPosition.Children)
+                        foreach (CharacterView character in heroPosition.Children)
                             character.SetBlackout();
             }
             else
             {
                 foreach (DockPanel heroPosition in ControlsManager.HeroPositions)
                     if (heroPosition.Children.Count > 0)
-                        foreach (Game.CharacterView character in heroPosition.Children)
+                        foreach (CharacterView character in heroPosition.Children)
                             if (character.Character.ShortName == shortName)
                             {
                                 ControlsManager.SpeakerName.Foreground = character.CharacterColor;

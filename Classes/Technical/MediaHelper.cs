@@ -143,10 +143,10 @@ namespace SKA_Novel.Classes.Technical
             MainWindow.AllowKeys = true;
             ControlsManager.Cutscene.Visibility = System.Windows.Visibility.Hidden;
             SetGameMusic(CurrentMusic);
-            SetEnvsound(CurrentEnviroment);
+            SetEnvSound(CurrentEnviroment);
         }
 
-        public static void SetEnvsound(string envName)              // Звуки фонового окружения - зациклены
+        public static void SetEnvSound(string envName)              // Звуки фонового окружения - зациклены
         {
             CurrentEnviroment = envName;
             MainEnvPlayer.Stop();                                   //Завершает
