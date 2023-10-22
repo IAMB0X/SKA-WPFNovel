@@ -88,6 +88,12 @@ namespace SKA_Novel.Classes.Technical
                 if ((LineOfStory + 1) < CurrentStory.Count())
                     LineOfStory++;
 
+                if (string.IsNullOrWhiteSpace(CurrentStory[LineOfStory].Trim()))
+                {
+                    GoNextLine();
+                    return;
+                }
+
                 if (CurrentStory[LineOfStory].Trim()[0] == '(')
                     UpdateSpeaker(CurrentStory[LineOfStory].Trim());
 
