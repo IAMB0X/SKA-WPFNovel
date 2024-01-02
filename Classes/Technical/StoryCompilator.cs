@@ -17,8 +17,8 @@ namespace SKA_Novel.Classes.Technical
 {
     public static class StoryCompilator
     {
-        public static string Title { get; set; } = "Visheribus";
-        public static string MainHeroName { get; set; } = "Хуй";
+        public static string Title { get; set; } = "Visceribus";
+        public static string MainHeroName { get; set; } = "Кевин";
         public static int LineOfStory { get; set; } = -1;
         public static string[] CurrentStory { get; set; }
 		public static bool IsGameStarted { get; set; } = false;
@@ -60,8 +60,6 @@ namespace SKA_Novel.Classes.Technical
         //{"CreateOptionBlock", "Выбор, отправляет в выбранный файл + число кармы, при соответсвуйщем варианте"}
 
 
-        // P.s. Сер, над ещё выбор с создаваемыми, отдельными кармами, чтобы обращаться к ним тоже. 
-        // Задать функцию перехода с разным цветом
 
 
         public static Dictionary<String, Command> Commands { get; } = new Dictionary<string, Command>()
