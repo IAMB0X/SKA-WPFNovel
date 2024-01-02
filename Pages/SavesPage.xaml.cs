@@ -41,15 +41,17 @@ namespace SKA_Novel.Pages
 
         private void UpdateSavesList()
         {
-            string[] saveFiles = Directory.GetFiles(MediaHelper.SaveDirectory);
+            string[] saveDirectories = Directory.GetDirectories(MediaHelper.SaveDirectory);
 
             lvSaves.Items.Clear();
 
-            foreach (string fileName in saveFiles)
+            foreach (string direcrotyPath in saveDirectories)
             {
-                if (fileName != MediaHelper.SaveDirectory + "QuickSave.txt")
+                if (direcrotyPath != MediaHelper.SaveDirectory + "QuickSave")
                 {
-                    FileStream stream = new FileStream(fileName, FileMode.OpenOrCreate);
+                    string saveFile = Directory.GetFiles(direcrotyPath).FirstOrDefault(u => u.Contains("Save_"));
+
+                    FileStream stream = new FileStream(saveFile, FileMode.OpenOrCreate);
                     BinaryFormatter bf = new BinaryFormatter();
                     DataToSave data = (DataToSave)bf.Deserialize(stream);
                     stream.Close();
@@ -82,7 +84,7 @@ namespace SKA_Novel.Pages
                         TextAlignment = TextAlignment.Center,
                         FontSize = 12,
                         Cursor = Cursors.Hand,
-                        DataContext = fileName
+                        DataContext = saveFile
                     };
 
                     if (IsSavingPage)
@@ -182,7 +184,7 @@ namespace SKA_Novel.Pages
         {
             try
             {
-                string saveName = "Save_" + (int)DateTime.Now.TimeOfDay.TotalSeconds + ".txt";
+                string saveName = "Save_" + (int)DateTime.Now.TimeOfDay.TotalSeconds;
                 MediaHelper.SaveGame(saveName);
                 UpdateSavesList();
             }
