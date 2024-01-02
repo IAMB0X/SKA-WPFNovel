@@ -49,8 +49,7 @@ namespace SKA_Novel.Pages
             {
                 if (direcrotyPath != MediaHelper.SaveDirectory + "QuickSave")
                 {
-                    string saveFile = (new DirectoryInfo(direcrotyPath).GetFiles().First(u => u.Name.Contains("Save_"))).FullName;
-
+                    string saveFile = Directory.GetFiles(direcrotyPath).FirstOrDefault(u => u.Contains("Save_"));
 
                     FileStream stream = new FileStream(saveFile, FileMode.OpenOrCreate);
                     BinaryFormatter bf = new BinaryFormatter();
