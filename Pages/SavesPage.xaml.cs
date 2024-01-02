@@ -47,7 +47,7 @@ namespace SKA_Novel.Pages
 
             foreach (string fileName in saveFiles)
             {
-                if (fileName != MediaHelper.SaveDirectory + "QuickSave.txt")
+                if (fileName != MediaHelper.SaveDirectory + "QuickSave")
                 {
                     FileStream stream = new FileStream(fileName, FileMode.OpenOrCreate);
                     BinaryFormatter bf = new BinaryFormatter();

@@ -200,7 +200,7 @@ namespace SKA_Novel.Classes.Technical
             MainMusicPlayer.Play();
         }
 
-        public static void SaveGame(string saveName = "QuickSave.txt")
+        public static void SaveGame(string saveName = "QuickSave")
         {
             FileStream stream = new FileStream(SaveDirectory + saveName, FileMode.OpenOrCreate);
             BinaryFormatter bf = new BinaryFormatter();
@@ -210,7 +210,7 @@ namespace SKA_Novel.Classes.Technical
             stream.Close();
         }
 
-        public static void LoadGame(string saveName = "QuickSave.txt")
+        public static void LoadGame(string saveName = "QuickSave")
         {
 
 			FileStream stream = new FileStream(SaveDirectory + saveName, FileMode.OpenOrCreate);
