@@ -20,7 +20,7 @@ namespace SKA_Novel.Classes.Game
 			Title = title;
 			Result = result;
 
-            FileStream stream = new FileStream(MediaHelper.SaveDirectory + Title, FileMode.OpenOrCreate);
+            FileStream stream = new FileStream(MediaHelper.SaveDirectory + MediaHelper.CurrentSave + "\\" + Title, FileMode.OpenOrCreate);
             BinaryFormatter bf = new BinaryFormatter();
             bf.Serialize(stream, result);
             stream.Close();
