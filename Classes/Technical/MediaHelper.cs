@@ -33,6 +33,7 @@ namespace SKA_Novel.Classes.Technical
         public static string CurrentFile;
         public static string CurrentMusic;
         public static string CurrentEnviroment;
+        public static string CurrentSave = "QuickSave";
         public static string CurrentBackground { get; set; }
 
         public static int frameIndex = 0;
@@ -203,7 +204,14 @@ namespace SKA_Novel.Classes.Technical
         public static void SaveGame(string saveName = "QuickSave")
         {
             if (!Directory.Exists(SaveDirectory + saveName))
+            {
                 Directory.CreateDirectory(SaveDirectory + saveName);
+
+                FileInfo[] files = new DirectoryInfo(SaveDirectory + CurrentSave + "\\").GetFiles()
+                                                        .Where(u => !u.Name.Contains("Save")).ToArray();
+                foreach (FileInfo file in files)
+                    File.Copy(file.FullName, SaveDirectory + saveName + "\\" + file.Name);
+            }
 
             FileStream stream = new FileStream(SaveDirectory + saveName + "\\" + saveName, FileMode.OpenOrCreate);
             BinaryFormatter bf = new BinaryFormatter();
@@ -211,6 +219,8 @@ namespace SKA_Novel.Classes.Technical
                                         StoryCompilator.LineOfStory, StoryCompilator.KarmaLevel,
                                         DateTime.Now, StoryCompilator.OptionResults));
             stream.Close();
+
+            CurrentSave = saveName;
         }
 
         public static void LoadGame(string saveName = "QuickSave")
