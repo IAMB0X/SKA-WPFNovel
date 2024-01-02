@@ -1,6 +1,9 @@
-﻿using System;
+﻿using SKA_Novel.Classes.Technical;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,6 +19,11 @@ namespace SKA_Novel.Classes.Game
 		{
 			Title = title;
 			Result = result;
-		}
+
+            FileStream stream = new FileStream(MediaHelper.SaveDirectory + Title, FileMode.OpenOrCreate);
+            BinaryFormatter bf = new BinaryFormatter();
+            bf.Serialize(stream, result);
+            stream.Close();
+        }
 	}
 }
