@@ -182,7 +182,7 @@ namespace SKA_Novel.Pages
         {
             try
             {
-                string saveName = "Save_" + (int)DateTime.Now.TimeOfDay.TotalSeconds + ".txt";
+                string saveName = "Save_" + (int)DateTime.Now.TimeOfDay.TotalSeconds;
                 MediaHelper.SaveGame(saveName);
                 UpdateSavesList();
             }
