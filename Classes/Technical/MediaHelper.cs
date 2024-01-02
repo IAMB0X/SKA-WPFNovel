@@ -200,12 +200,9 @@ namespace SKA_Novel.Classes.Technical
             MainMusicPlayer.Play();
         }
 
-        public static void SaveGame(string saveName = "QuickSave")
+        public static void SaveGame(string saveName = "QuickSave.txt")
         {
-            if (!Directory.Exists(SaveDirectory + saveName))
-                Directory.CreateDirectory(SaveDirectory + saveName);
-
-            FileStream stream = new FileStream(SaveDirectory + saveName + "\\" + saveName, FileMode.OpenOrCreate);
+            FileStream stream = new FileStream(SaveDirectory + saveName, FileMode.OpenOrCreate);
             BinaryFormatter bf = new BinaryFormatter();
             bf.Serialize(stream, new DataToSave(saveName, CurrentFile, CurrentBackground,
                                         StoryCompilator.LineOfStory, StoryCompilator.KarmaLevel,
@@ -213,9 +210,10 @@ namespace SKA_Novel.Classes.Technical
             stream.Close();
         }
 
-        public static void LoadGame(string saveName = "QuickSave")
+        public static void LoadGame(string saveName = "QuickSave.txt")
         {
-			FileStream stream = new FileStream(SaveDirectory + saveName + "\\" + saveName, FileMode.OpenOrCreate);
+
+			FileStream stream = new FileStream(SaveDirectory + saveName, FileMode.OpenOrCreate);
 			BinaryFormatter bf = new BinaryFormatter();
             DataToSave data = (DataToSave)bf.Deserialize(stream);
             stream.Close();
