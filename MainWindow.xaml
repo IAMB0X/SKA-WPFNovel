@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SKA_Novel"
         mc:Ignorable="d"
-        Title="SKA Novel" Height="450" Width="800" ResizeMode="NoResize" WindowState="Maximized"
+        Title="SKA Novel" Height="600" Width="1300" ResizeMode="NoResize" WindowState="Maximized"
         WindowStyle="None" Keyboard.KeyUp="Window_KeyDown" Background="#000">
     
     <Window.Effect>
@@ -33,8 +33,11 @@
                 MouseDown="brdMainText_MouseDown" Grid.Row="1" Grid.RowSpan="2"/>
         <DockPanel x:Name="HeroPosition3" Grid.Column="1"
                 MouseDown="brdMainText_MouseDown" Grid.Row="1" Grid.RowSpan="2"/>
-
-        <Border x:Name="brdMainText" Background="#000" Grid.Row="2" Grid.ColumnSpan="2">
+        
+        <DockPanel x:Name="DarkScreen" Background="#000" Grid.ColumnSpan="2" Grid.RowSpan="3"
+                   Opacity="0" Visibility="Collapsed" />
+        
+        <Border x:Name="brdMainText" Background="#000" Opacity="0.9" Margin="20" CornerRadius="20" Grid.Row="2" Grid.ColumnSpan="2">
 
             <DockPanel>
 
@@ -60,7 +63,7 @@
                     <TextBlock x:Name="txtCurrentCharacter" FontSize="36" FontWeight="Black" TextAlignment="Left"
                                DockPanel.Dock="Left" VerticalAlignment="Center" Margin="30" FontFamily="ГОСТ тип А"/>
 
-                    <Image Source="/Resources/Stripe.png" Opacity="0.8" Margin="5"/>
+                    <!--<Image Source="/Resources/Stripe.png" Opacity="0.8" Margin="5"/>-->
 
                     <TextBlock x:Name="txtMainText" TextAlignment="Left" Margin="30" FontSize="30"
                                VerticalAlignment="Top" FontFamily="ГОСТ тип А"/>
@@ -80,8 +83,7 @@
 
         </Border>
 
-        <DockPanel x:Name="DarkScreen" Background="#000" Grid.ColumnSpan="2" Grid.RowSpan="2"
-                   Opacity="0" Visibility="Collapsed" />
+       
 
         <Border x:Name="btClose" Grid.Column="2"
                 VerticalAlignment="Top" HorizontalAlignment="Right" CornerRadius="50" Margin="20"

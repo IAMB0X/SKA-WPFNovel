@@ -17,8 +17,8 @@ namespace SKA_Novel.Classes.Technical
 {
     public static class StoryCompilator
     {
-        public static string Title { get; set; } = "Visceribus";
-        public static string MainHeroName { get; set; } = "Кевин";
+        public static string Title { get; set; } = "Хроники \"НОСТ\"";
+        public static string MainHeroName { get; set; } = "Уинстон";
         public static int LineOfStory { get; set; } = -1;
         public static string[] CurrentStory { get; set; }
 		public static bool IsGameStarted { get; set; } = false;

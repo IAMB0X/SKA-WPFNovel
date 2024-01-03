@@ -23,22 +23,22 @@
 
             <DockPanel VerticalAlignment="Center">
 
-                <TextBlock x:Name="mainTitle" Margin="35" FontSize="102" DockPanel.Dock="Top" HorizontalAlignment="Right"
-                           FontFamily="Bahnschrift" FontStyle="Italic" TextWrapping="Wrap" TextAlignment="Center" FontWeight="Bold"/>
+                <TextBlock x:Name="mainTitle" Margin="35" FontSize="90" DockPanel.Dock="Top" HorizontalAlignment="Right"
+                           FontFamily="Bahnschrift" TextWrapping="Wrap" TextAlignment="Center" FontWeight="Bold"/>
 
                 <StackPanel VerticalAlignment="Center" DockPanel.Dock="Right" Margin="15">
 
                     <TextBlock x:Name="btStartGame" Text="НОВАЯ ИГРА" Margin="20" FontSize="54" MouseEnter="MenuItem_MouseEnter" MouseLeave="MenuItem_MouseLeave"
                            FontWeight="ExtraBlack" MouseDown="btStartGame_MouseDown" HorizontalAlignment="Right" FontFamily="Segoe UI"/>
 
-                    <TextBlock x:Name="btSaveGame" Text="СОХРАНЕНИЕ" Margin="20" FontSize="54" MouseEnter="MenuItem_MouseEnter" MouseLeave="MenuItem_MouseLeave"
+                    <!--<TextBlock x:Name="btSaveGame" Text="СОХРАНЕНИЕ" Margin="20" FontSize="54" MouseEnter="MenuItem_MouseEnter" MouseLeave="MenuItem_MouseLeave"
                            FontWeight="ExtraBlack" MouseDown="btSaveGame_MouseDown"  HorizontalAlignment="Right"/>
 
                     <TextBlock x:Name="btLoadGame" Text="ЗАГРУЗКА" Margin="20" FontSize="54" MouseEnter="MenuItem_MouseEnter" MouseLeave="MenuItem_MouseLeave"
                            FontWeight="ExtraBlack" MouseDown="btLoadGame_MouseDown" HorizontalAlignment="Right"/>
 
                     <TextBlock x:Name="btSettings" Text="НАСТРОЙКИ" Margin="20" FontSize="54" MouseEnter="MenuItem_MouseEnter" MouseLeave="MenuItem_MouseLeave"
-                           FontWeight="ExtraBlack" MouseDown="btSettings_MouseDown"  HorizontalAlignment="Right"/>
+                           FontWeight="ExtraBlack" MouseDown="btSettings_MouseDown"  HorizontalAlignment="Right"/>-->
 
                     <TextBlock x:Name="btExit" Text="ВЫХОД" Margin="20" FontSize="54" MouseEnter="MenuItem_MouseEnter" MouseLeave="MenuItem_MouseLeave"
                            FontWeight="ExtraBlack" MouseDown="btClose_MouseDown" HorizontalAlignment="Right"/>
