@@ -43,15 +43,15 @@
 
                 <StackPanel DockPanel.Dock="Right">
 
-                    <Slider x:Name="Volume" Orientation="Vertical" Height="100" Width="30" Minimum="0" Maximum="1"
+                    <Slider x:Name="Volume" Orientation="Vertical" Height="100" Width="30" Minimum="0" Maximum="1" Cursor="Hand"
                             Value="0.1" ValueChanged="Volume_ValueChanged" SmallChange="0.01" LargeChange="0.01" Visibility="Collapsed"/>
 
-                    <Border x:Name="btVolume"
+                    <Border x:Name="btVolume" Cursor="Hand"
                             CornerRadius="40" Margin="5" Height="40" Width="40" MouseDown="btVolume_MouseDown">
                         <Image x:Name="imgVolume" Source="/Resources/volume.png"/>
                     </Border>
 
-                    <Border x:Name="btSave" 
+                    <Border x:Name="btSave" Cursor="Hand"
                             CornerRadius="10" Margin="5" Height="40" Width="40" MouseDown="btSave_MouseDown">
                         <Image Source="/Resources/floppy-disk.png"/>
                     </Border>
@@ -65,7 +65,7 @@
 
                     <!--<Image Source="/Resources/Stripe.png" Opacity="0.8" Margin="5"/>-->
 
-                    <TextBlock x:Name="txtMainText" TextAlignment="Left" Margin="30" FontSize="30"
+                    <TextBlock x:Name="txtMainText" TextAlignment="Left" Margin="30" FontSize="30" Cursor="Hand"
                                VerticalAlignment="Top" FontFamily="ГОСТ тип А"/>
 
                 </DockPanel>
@@ -85,7 +85,7 @@
 
        
 
-        <Border x:Name="btClose" Grid.Column="2"
+        <Border x:Name="btClose" Grid.Column="2" Cursor="Hand"
                 VerticalAlignment="Top" HorizontalAlignment="Right" CornerRadius="50" Margin="20"
                 Height="65" Width="65" MouseDown="btClose_MouseDown">
             <Image Source="/Resources/cancel.png"/>
