@@ -231,7 +231,7 @@ namespace SKA_Novel.Classes.Technical
             string[] arguments = GetArguments(codeString).Split(',');
             byte position = Convert.ToByte(arguments[2].Trim());
 
-            Character character = new Character(arguments[0]);
+            Character character = new Character(arguments[0].Trim());
             new CharacterView(character, arguments[1].Trim(), position);
         }
 
@@ -349,7 +349,7 @@ namespace SKA_Novel.Classes.Technical
                                 ControlsManager.SpeakerName.Text = character.Character.FullName.ToUpper();
                                 character.TakeOffBlackout();
                             }
-                            else
+                            else 
                             {
                                 character.SetBlackout();
                             }

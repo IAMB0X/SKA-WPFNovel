@@ -17,7 +17,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="0.55*"/>
             <RowDefinition Height="3*"/>
-            <RowDefinition Height="0.75*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -41,7 +41,7 @@
 
             <DockPanel>
 
-                <StackPanel DockPanel.Dock="Right">
+                <StackPanel DockPanel.Dock="Right" Margin="10">
 
                     <Slider x:Name="Volume" Orientation="Vertical" Height="100" Width="30" Minimum="0" Maximum="1" Cursor="Hand"
                             Value="0.1" ValueChanged="Volume_ValueChanged" SmallChange="0.01" LargeChange="0.01" Visibility="Collapsed"/>
@@ -58,16 +58,18 @@
 
                 </StackPanel>
 
-                <DockPanel MouseDown="brdMainText_MouseDown" Margin="10">
+                <DockPanel MouseDown="brdMainText_MouseDown">
 
-                    <TextBlock x:Name="txtCurrentCharacter" FontSize="36" FontWeight="Black" TextAlignment="Left"
-                               DockPanel.Dock="Left" VerticalAlignment="Center" Margin="30" FontFamily="ГОСТ тип А"/>
+                    <TextBlock x:Name="txtCurrentCharacter" FontSize="26" FontWeight="Black" TextAlignment="Left"
+                               DockPanel.Dock="Top" Margin="15, 15, 15, 0"/>
 
-                    <!--<Image Source="/Resources/Stripe.png" Opacity="0.8" Margin="5"/>-->
+                    <ScrollViewer Margin="15, 5, 15, 0" VerticalAlignment="Top" DockPanel.Dock="Top" VerticalScrollBarVisibility="Auto">
+                        
+                    
+                    <TextBlock x:Name="txtMainText" TextAlignment="Left" FontSize="26" Cursor="Hand"/>
 
-                    <TextBlock x:Name="txtMainText" TextAlignment="Left" Margin="30" FontSize="30" Cursor="Hand"
-                               VerticalAlignment="Top" FontFamily="ГОСТ тип А"/>
-
+                    </ScrollViewer>
+                    
                 </DockPanel>
 
             </DockPanel>
