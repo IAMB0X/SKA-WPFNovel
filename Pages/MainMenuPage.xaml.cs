@@ -60,13 +60,13 @@ namespace SKA_Novel.Pages
 
         private void btStartGame_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            ControlsManager.MainText.Visibility = System.Windows.Visibility.Visible;
+            ControlsManager.MainText.Visibility = Visibility.Visible;
             ControlsManager.SpeakerName.Visibility = Visibility.Visible;
             ControlsManager.OptionPanel.Children.Clear();
             ControlsManager.MainMenuFrame.Visibility = Visibility.Collapsed;
+            MainWindow.AllowKeys = true;
             StoryCompilator.GoNextFile("::Startfile"); // Стартовый файл истории, сейчас: тестовый
             StoryCompilator.GoNextLine();
-            MainWindow.AllowKeys = true;
             StoryCompilator.IsGameStarted = true;
         }
 
