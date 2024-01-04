@@ -367,8 +367,8 @@ namespace SKA_Novel.Classes.Technical
         {
             string[] arguments = GetArguments(codeString).Split(',');
             int needKarma = Convert.ToInt16(arguments[0]);
-            if (KarmaLevel >= needKarma)
-                GoThisLine(": " + arguments[1]);
+            if (KarmaLevel < needKarma)
+                GoThisLine("::" + arguments[1]);
         }
 
         public static void CreateChoiseBlock(string codeString)
