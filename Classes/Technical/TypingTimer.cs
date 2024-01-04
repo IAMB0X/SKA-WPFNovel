@@ -96,50 +96,52 @@ namespace SKA_Novel.Classes.Technical
 
         public void TypingText(object sender, EventArgs e)
         {
-            if (_letterIndex != _textLength)
+            IsTyping = _letterIndex != _textLength;
+
+            if (IsTyping)
+                TypeLetter();
+            else
+                Timer.Stop();
+        }
+
+        public void TypeLetter()
+        {
+            if (_content[_letterIndex] == '\\' && _content[_letterIndex + 1] == 'r')
             {
-                if (_content[_letterIndex] == '\\' && _content[_letterIndex + 1] == 'r')
-                {
-                    _targetTextBlock.Text += "\n";
-                    _letterIndex++;
+                _targetTextBlock.Text += "\n";
+                _letterIndex++;
 
-                    _fontSize = 30;
-                    _isBold = _targetTextBlock.FontWeight != FontWeights.Regular;
-                    _isItalic = _targetTextBlock.FontStyle != FontStyles.Normal;
-                    _foreground = Colors.White;
-                }
-                else
-                {
-                    while (_content[_letterIndex] == '>' || _content[_letterIndex] == '<')
-                    {
-                        _letterIndex++;
-
-                        if (_content[_letterIndex - 1] == '>')
-                            FormatText();
-
-                        if (_content[_letterIndex - 1] == '<')
-                            UnformatText();
-                    }
-
-                    Run letter = new Run(_content[_letterIndex].ToString())
-                    {
-                        FontSize = _fontSize,
-                        Foreground = new SolidColorBrush(_foreground)
-                    };
-
-                    if (_isBold)
-                        letter.FontWeight = FontWeights.Bold;
-                    if (_isItalic)
-                        letter.FontStyle = FontStyles.Italic;
-
-                    _targetTextBlock.Inlines.Add(letter);
-                    _letterIndex++;
-                }
+                _fontSize = 30;
+                _isBold = _targetTextBlock.FontWeight != FontWeights.Regular;
+                _isItalic = _targetTextBlock.FontStyle != FontStyles.Normal;
+                _foreground = Colors.White;
             }
             else
             {
-                IsTyping = false;
-                Timer.Stop();
+                while (_content[_letterIndex] == '>' || _content[_letterIndex] == '<')
+                {
+                    _letterIndex++;
+
+                    if (_content[_letterIndex - 1] == '>')
+                        FormatText();
+
+                    if (_content[_letterIndex - 1] == '<')
+                        UnformatText();
+                }
+
+                Run letter = new Run(_content[_letterIndex].ToString())
+                {
+                    FontSize = _fontSize,
+                    Foreground = new SolidColorBrush(_foreground)
+                };
+
+                if (_isBold)
+                    letter.FontWeight = FontWeights.Bold;
+                if (_isItalic)
+                    letter.FontStyle = FontStyles.Italic;
+
+                _targetTextBlock.Inlines.Add(letter);
+                _letterIndex++;
             }
         }
 
@@ -151,7 +153,14 @@ namespace SKA_Novel.Classes.Technical
         public void FinishTyping()
         {
             Timer.Stop();
-            _targetTextBlock.Text = _content;
+
+            _targetTextBlock.Text = "";
+            _targetTextBlock.Inlines.Clear();
+            _letterIndex = 0;
+
+            while (_letterIndex < _textLength)
+                TypeLetter();
+
             IsTyping = false;
         }
     }
