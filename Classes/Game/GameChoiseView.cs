@@ -54,9 +54,12 @@ namespace SKA_Novel.Classes.Game
             StoryCompilator.KarmaLevel += KarmaWeight;
 
             if (!string.IsNullOrEmpty(Title) && !string.IsNullOrEmpty(Value))
-				StoryCompilator.OptionResults.Add(new GameChoiseResult(Title, Value));
+                if (StoryCompilator.OptionResults.FirstOrDefault(u => u.Title.Equals(Title)) != null)
+                    StoryCompilator.OptionResults.FirstOrDefault(u => u.Title.Equals(Title)).Result = Value;
+                else
+                    StoryCompilator.OptionResults.Add(new GameChoiseResult(Title, Value));
 
-			StoryCompilator.GoNextFile(TargetFile);
+            StoryCompilator.GoNextFile(TargetFile);
             ControlsManager.OptionPanel.Children.Clear();
             ControlsManager.MainText.Visibility = Visibility.Visible;
             ControlsManager.SpeakerName.Visibility = Visibility.Visible;
