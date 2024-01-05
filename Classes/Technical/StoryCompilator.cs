@@ -77,7 +77,8 @@ namespace SKA_Novel.Classes.Technical
             {"GoThisLine", GoThisLine},                 // lineNumber
             {"MirrorHero", MirrorHero},                 // characterName, position
             {"CheckKarma", CheckKarma},                 // needKarmaLevel, lineNumber (go to this line if KarmaLevel < needKarmaLevel)
-            {"CheckChoise", CheckChoise},                 // needKarmaLevel, lineNumber (go to this line if KarmaLevel < needKarmaLevel)
+            {"CheckChoise", CheckChoise},
+            {"CheckChoiseSwitch", CheckChoiseSwitch},
             {"SetHeroAnimation", SetHeroAnimation},     // characterName, position, animationSpeedMilliseconds { Sprite1, Sprite2, ... }
             {"StopAnimation", StopAnimation},           // characterName, position
             {"SetVideo", SetVideo},                     // videoName
@@ -380,6 +381,33 @@ namespace SKA_Novel.Classes.Technical
                 GoNextFile("::" + arguments[1]);
         }
 
+        public static void CheckChoiseSwitch(string codeString)
+        {
+            string title = GetArguments(codeString).Trim().ToLower();
+            GameChoiseResult optionResult = OptionResults.FirstOrDefault(u => u.Title.ToLower().Equals(title));
+            string nextFileName = "";
+
+            LineOfStory++;
+
+            while (CurrentStory[LineOfStory].Trim()[0] != '}')
+            {
+                if (CurrentStory[LineOfStory].Trim()[0] == '{')
+                    LineOfStory++;
+
+                string value = CurrentStory[LineOfStory].Split(new string[] { "=>" }, StringSplitOptions.None)[0].Trim().ToLower();
+
+                if (value.Equals(optionResult.Result.ToLower()) || (value.Equals("default") && (string.IsNullOrEmpty(nextFileName))))
+                    nextFileName = CurrentStory[LineOfStory].Split(new string[] { "=>" }, StringSplitOptions.None)[1].Trim();
+
+                LineOfStory++;
+            }
+
+            if (!string.IsNullOrEmpty(nextFileName))
+                GoNextFile("::" + nextFileName);
+            else
+                LineOfStory++;
+        }
+
         public static void CreateChoiseBlock(string codeString)
         {
 			string title = GetArguments(codeString).Trim();
@@ -388,14 +416,10 @@ namespace SKA_Novel.Classes.Technical
 			while (CurrentStory[LineOfStory].Trim()[0] != '}')
 			{
 				if (CurrentStory[LineOfStory].Trim()[0] == '{')
-				{
-					LineOfStory++;
-					CreateChoiseValue(title);
-				}
-				else
-					CreateChoiseValue(title);
+                    LineOfStory++;
 
-				LineOfStory++;
+                CreateChoiseValue(title);
+                LineOfStory++;
 			}
 
 			ControlsManager.MainText.Visibility = Visibility.Hidden;
@@ -410,14 +434,10 @@ namespace SKA_Novel.Classes.Technical
             while (CurrentStory[LineOfStory].Trim()[0] != '}')
             {
                 if (CurrentStory[LineOfStory].Trim()[0] == '{')
-                {
                     LineOfStory++;
-                    CreateChoise();
-                }
-                else
-					CreateChoise();
 
-				LineOfStory++;
+                CreateChoise();
+                LineOfStory++;
             }
 
             ControlsManager.MainText.Visibility = Visibility.Hidden;
