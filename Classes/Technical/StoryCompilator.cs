@@ -383,7 +383,7 @@ namespace SKA_Novel.Classes.Technical
         public static void CreateChoiseBlock(string codeString)
         {
 			string title = GetArguments(codeString).Trim();
-
+            int blockIndex = LineOfStory;
 			LineOfStory++;
 			while (CurrentStory[LineOfStory].Trim()[0] != '}')
 			{
@@ -401,6 +401,7 @@ namespace SKA_Novel.Classes.Technical
 			ControlsManager.MainText.Visibility = Visibility.Hidden;
 			ControlsManager.SpeakerName.Visibility = Visibility.Hidden;
 			MainWindow.AllowKeys = false;
+            LineOfStory = blockIndex;
 		}
 
 		public static void CreateChoise(string codeString)
