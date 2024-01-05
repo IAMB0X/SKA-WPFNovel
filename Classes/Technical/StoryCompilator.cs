@@ -77,6 +77,7 @@ namespace SKA_Novel.Classes.Technical
             {"GoThisLine", GoThisLine},                 // lineNumber
             {"MirrorHero", MirrorHero},                 // characterName, position
             {"CheckKarma", CheckKarma},                 // needKarmaLevel, lineNumber (go to this line if KarmaLevel < needKarmaLevel)
+            {"CheckChoise", CheckChoise},                 // needKarmaLevel, lineNumber (go to this line if KarmaLevel < needKarmaLevel)
             {"SetHeroAnimation", SetHeroAnimation},     // characterName, position, animationSpeedMilliseconds { Sprite1, Sprite2, ... }
             {"StopAnimation", StopAnimation},           // characterName, position
             {"SetVideo", SetVideo},                     // videoName
@@ -369,6 +370,14 @@ namespace SKA_Novel.Classes.Technical
             int needKarma = Convert.ToInt16(arguments[0]);
             if (KarmaLevel < needKarma)
                 GoThisLine("::" + arguments[1]);
+        }
+        public static void CheckChoise(string codeString)
+        {
+            string[] arguments = GetArguments(codeString).Split(new string[] { "=>" }, StringSplitOptions.None);
+            string title = arguments[0].Split('[')[0].Trim();
+            string result = arguments[0].Split('[')[1].Trim().Substring(0, arguments[0].Split('[')[1].Trim().Length - 1);
+            if (OptionResults.FirstOrDefault(u => u.Title.ToLower().Equals(title.ToLower()) && u.Result.ToLower().Equals(result.ToLower())) != null)
+                GoNextFile("::" + arguments[1]);
         }
 
         public static void CreateChoiseBlock(string codeString)
